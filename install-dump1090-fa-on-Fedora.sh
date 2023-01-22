@@ -7,8 +7,7 @@ sudo dnf install -y git
 sudo dnf install -y wget
 sudo dnf install -y make
 sudo dnf install -y cmake
-sudo dnf install -y libusb-devel
-sudo dnf install -y rtl-sdr
+sudo dnf install -y libusbx-devel
 sudo dnf install -y ncurses-devel
 sudo dnf install -y lighttpd
 

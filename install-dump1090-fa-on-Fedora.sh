@@ -39,7 +39,10 @@ sudo cp -r ${INSTALL_FOLDER}/dump1090-fa/public_html /usr/share/skyaware/html
 
 echo "Adding system user dump1090 and adding it to group rtlsdr"
 echo "The user dump1090 will run the service"
-sudo useradd --system dump1090
+sudo useradd --system dump1090 
+echo "Installing rtl-sdr to create group rtlsdr and adding the"
+echo "user dump1090 to group rtlsdr to enable it to use rtlsdr Dongle"
+sudo dnf install rtl-sdr
 sudo usermod -a -G rtlsdr dump1090
 sudo systemctl enable dump1090-fa
 

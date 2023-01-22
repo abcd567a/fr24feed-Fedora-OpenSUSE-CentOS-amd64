@@ -43,7 +43,7 @@ echo -e "\e[01;32mThe user dump1090 will run the dump1090-fa service \e[39m"
 sudo useradd --system dump1090 
 echo -e "\e[01;32mInstalling rtl-sdr to create group rtlsdr and adding the\e[39m"
 echo -e "\e[01;32muser dump1090 to group rtlsdr to enable it to use rtlsdr Dongle ... \e[39m"
-sudo dnf install rtl-sdr
+sudo dnf install rtl-sdr -y
 sudo usermod -a -G rtlsdr dump1090
 sudo systemctl enable dump1090-fa
 

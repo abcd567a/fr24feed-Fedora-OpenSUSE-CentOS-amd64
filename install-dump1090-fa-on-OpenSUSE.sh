@@ -22,15 +22,6 @@ sudo zypper install -y libusb-compat-devel
 sudo zypper install -y rtl-sdr-devel
 
 cd ${ASSETS_FOLDER}
-git clone https://github.com/steve-m/librtlsdr.git
-cd ${ASSETS_FOLDER}/librtlsdr
-git fetch --all
-git reset --hard origin/master
-sudo mkdir build && cd build
-sudo cmake ../ -DINSTALL_UDEV_RULES=ON -DDETACH_KERNEL_DRIVER=ON -DLIB_INSTALL_DIR=/usr/lib64 -DCMAKE_INSTALL_PREFIX=/usr
-sudo make
-sudo make install
-sudo ldconfig
 
 echo -e "\e[01;32mBuilding dump1090-fa linux binary from source code \e[0;39m"
 cd ${ASSETS_FOLDER}
@@ -66,7 +57,6 @@ echo -e "\e[01;32mThe user dump1090 will run the dump1090-fa service \e[0;39m"
 sudo useradd --system dump1090 
 echo -e "\e[01;32mInstalling rtl-sdr to create group rtlsdr and adding the\e[0;39m"
 echo -e "\e[01;32muser dump1090 to group rtlsdr to enable it to use rtlsdr Dongle ... \e[0;39m"
-sudo dnf install -y rtl-sdr
 sudo usermod -a -G rtlsdr dump1090
 sudo systemctl enable dump1090-fa
 

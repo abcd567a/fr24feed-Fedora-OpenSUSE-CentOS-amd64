@@ -86,6 +86,15 @@ sudo chmod 644 /etc/lighttpd/lighttpd.conf
 sudo systemctl enable lighttpd
 sudo systemctl start lighttpd
 
+
+sudo firewall-cmd --zone=public --add-service=http --permanent
+sudo firewall-cmd --zone=public --add-service=https --permanent
+sudo firewall-cmd --reload
+
+## Verify it:
+sudo firewall-cmd --list-services
+sudo firewall-cmd --list-services --permanent 
+
 echo " "
 echo -e "\e[01;32mInstallation of dump1090-fa completed....\e[0;39m"
 echo -e "\e[01;32mSee the Web Interface (Map etc) at\e[0;39m"

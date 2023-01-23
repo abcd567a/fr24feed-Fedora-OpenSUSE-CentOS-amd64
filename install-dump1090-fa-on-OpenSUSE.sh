@@ -25,6 +25,8 @@ sudo zypper addrepo https://download.opensuse.org/repositories/home:virtuallyNic
 sudo zypper refresh
 sudo zypper install -y librtlsdr-devel
 
+sudo zypper removerepo home_virtuallyNick_piaware  
+sudo zypper refresh 
 
 cd ${ASSETS_FOLDER}
 git clone https://github.com/steve-m/librtlsdr.git

@@ -19,8 +19,7 @@ sudo zypper install -y lighttpd
 
 sudo zypper install -y libusb-1_0-0
 sudo zypper install -y libusb-compat-devel
-sudo zypper install -y librtlsdr-devel
-sudo zypper install rtl-sdr-devel
+sudo zypper install -y rtl-sdr-devel
 
 cd ${ASSETS_FOLDER}
 git clone https://github.com/steve-m/librtlsdr.git
@@ -67,7 +66,7 @@ echo -e "\e[01;32mThe user dump1090 will run the dump1090-fa service \e[0;39m"
 sudo useradd --system dump1090 
 echo -e "\e[01;32mInstalling rtl-sdr to create group rtlsdr and adding the\e[0;39m"
 echo -e "\e[01;32muser dump1090 to group rtlsdr to enable it to use rtlsdr Dongle ... \e[0;39m"
-sudo dnf install rtl-sdr -y
+sudo dnf install -y rtl-sdr
 sudo usermod -a -G rtlsdr dump1090
 sudo systemctl enable dump1090-fa
 
@@ -82,12 +81,17 @@ sudo chmod 644 /etc/lighttpd/lighttpd.conf
 sudo systemctl enable lighttpd
 sudo systemctl start lighttpd
 
+echo " "
+echo -e "\e[01;32mConfiguring Firewall to permit display of SkyView from LAN/internet \e[0;39m"
+echo -e "\e[39m   sudo firewall-cmd --zone=public --add-service=http --permanent \e[39m"
+echo -e "\e[39m   sudo firewall-cmd --zone=public --add-service=https --permanent \e[39m"
+echo -e "\e[39m   sudo firewall-cmd --reload \e[39m"
 
 sudo firewall-cmd --zone=public --add-service=http --permanent
 sudo firewall-cmd --zone=public --add-service=https --permanent
 sudo firewall-cmd --reload
 
-## Verify it:
+echo -e "\e[01;32mVerifying services opened in firewall\e[0;39m"
 sudo firewall-cmd --list-services
 sudo firewall-cmd --list-services --permanent 
 

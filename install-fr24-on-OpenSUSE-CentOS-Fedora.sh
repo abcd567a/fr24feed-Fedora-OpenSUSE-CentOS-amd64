@@ -47,7 +47,7 @@ RuntimeDirectoryMode=0755
 ExecStartPre=-/bin/mkdir -p /var/log/fr24feed
 ExecStartPre=-/bin/mkdir -p /run/fr24feed
 ExecStartPre=-/bin/touch /dev/shm/decoder.txt
-ExecStartPre=-/bin/chown fr24:fr24 /dev/shm/decoder.txt /run/fr24feed /var/log/fr24feed
+ExecStartPre=-/bin/chown fr24 /dev/shm/decoder.txt /run/fr24feed /var/log/fr24feed
 ExecStart=/usr/bin/fr24feed
 User=fr24
 PermissionsStartOnly=true
@@ -58,7 +58,7 @@ WantedBy=multi-user.target
 EOM
 sudo chmod 644 ${SERVICE_FILE}
 
-sudo useradd --system fr24 -U
+sudo useradd --system fr24
 
 sudo systemctl enable fr24feed
 

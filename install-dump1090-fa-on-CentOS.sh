@@ -3,8 +3,10 @@
 ASSETS_FOLDER=/usr/share/dump1090-assets
 sudo mkdir -p ${ASSETS_FOLDER}
 
-echo -e "\e[01;32mInstalling Tools & Dependencies.... \e[0;39m"
+echo -e "\e[01;32mAdding EPEL repository... \e[0;39m"
 sudo yum install -y epel-release
+
+echo -e "\e[01;32mInstalling Tools & Dependencies.... \e[0;39m"
 sudo yum install -y git
 sudo yum install -y wget
 sudo yum install -y make

@@ -1,7 +1,7 @@
 #!/bin/bash
 
-INSTALL_FOLDER=/usr/share/dump1090-assets
-sudo mkdir -p ${INSTALL_FOLDER}
+ASSETS_FOLDER=/usr/share/dump1090-assets
+sudo mkdir -p ${ASSETS_FOLDER}
 
 echo -e "\e[01;32mInstalling Tools & Dependencies.... \e[0;39m"
 sudo dnf install -y git
@@ -14,9 +14,9 @@ sudo dnf install -y ncurses-devel
 sudo dnf install -y lighttpd
 
 echo -e "\e[01;32mBuild & Install librtlsdr from source code. \e[0;39m"
-cd ${INSTALL_FOLDER}
+cd ${ASSETS_FOLDER}
 git clone https://github.com/steve-m/librtlsdr.git
-cd ${INSTALL_FOLDER}/librtlsdr
+cd ${ASSETS_FOLDER}/librtlsdr
 sudo mkdir build && cd build
 sudo cmake ../ -DINSTALL_UDEV_RULES=ON -DDETACH_KERNEL_DRIVER=ON -DLIB_INSTALL_DIR=/usr/lib64 -DCMAKE_INSTALL_PREFIX=/usr
 sudo make
@@ -24,19 +24,31 @@ sudo make install
 sudo ldconfig
 
 echo -e "\e[01;32mBuilding dump1090-fa linux binary from source code \e[0;39m"
-cd ${INSTALL_FOLDER}
+cd ${ASSETS_FOLDER}
 sudo git clone https://github.com/flightaware/dump1090.git dump1090-fa
-cd ${INSTALL_FOLDER}/dump1090-fa
+cd ${ASSETS_FOLDER}/dump1090-fa
 sudo make BLADERF=no DUMP1090_VERSION=$(git describe --tags | sed 's/-.*//')
 
 echo -e "\e[01;32mCopying necessary files from cloned source code to the computer...\e[0;39m"
-sudo cp ${INSTALL_FOLDER}/dump1090-fa/dump1090 /usr/bin/dump1090-fa
-sudo cp ${INSTALL_FOLDER}/dump1090-fa/debian/dump1090-fa.default /etc/default/dump1090-fa
-sudo cp ${INSTALL_FOLDER}/dump1090-fa/debian/dump1090-fa.service /usr/lib/systemd/system/dump1090-fa.service
+
+sudo cp ${ASSETS_FOLDER}/dump1090-fa/dump1090 /usr/bin/dump1090-fa
+
+sudo mkdir -p /etc/default
+sudo cp ${ASSETS_FOLDER}/dump1090-fa/debian/dump1090-fa.default /etc/default/dump1090-fa
+
+
 sudo mkdir -p /usr/share/dump1090-fa/
-sudo cp ${INSTALL_FOLDER}/dump1090-fa/debian/start-dump1090-fa /usr/share/dump1090-fa/start-dump1090-fa
+sudo cp ${ASSETS_FOLDER}/dump1090-fa/debian/start-dump1090-fa /usr/share/dump1090-fa/start-dump1090-fa
+sudo cp ${ASSETS_FOLDER}/dump1090-fa/debian/generate-wisdom /usr/share/dump1090-fa/
+sudo cp ${ASSETS_FOLDER}/dump1090-fa/debian/upgrade-config /usr/share/dump1090-fa/
+sudo mkdir -p /usr/lib/dump1090-fa
+sudo cp ${ASSETS_FOLDER}/dump1090-fa/starch-benchmark  /usr/lib/dump1090-fa/
+
 sudo mkdir -p /usr/share/skyaware/
-sudo cp -r ${INSTALL_FOLDER}/dump1090-fa/public_html /usr/share/skyaware/html
+sudo cp -r ${ASSETS_FOLDER}/dump1090-fa/public_html /usr/share/skyaware/html
+
+sudo mkdir -p /usr/lib/systemd/system
+sudo cp ${ASSETS_FOLDER}/dump1090-fa/debian/dump1090-fa.service /usr/lib/systemd/system/dump1090-fa.service
 
 echo -e "\e[01;32mAdding system user dump1090 and adding it to group rtlsdr... \e[0;39m"
 echo -e "\e[01;32mThe user dump1090 will run the dump1090-fa service \e[0;39m"
@@ -48,8 +60,8 @@ sudo usermod -a -G rtlsdr dump1090
 sudo systemctl enable dump1090-fa
 
 echo -e "\e[01;32mPerforming Lighttpd integration to display Skyaware Map ... \e[0;39m"
-sudo cp ${INSTALL_FOLDER}/dump1090-fa/debian/lighttpd/89-skyaware.conf /etc/lighttpd/conf.d/89-skyaware.conf
-sudo cp ${INSTALL_FOLDER}/dump1090-fa/debian/lighttpd/88-dump1090-fa-statcache.conf /etc/lighttpd/conf.d/88-dump1090-fa-statcache.conf
+sudo cp ${ASSETS_FOLDER}/dump1090-fa/debian/lighttpd/89-skyaware.conf /etc/lighttpd/conf.d/89-skyaware.conf
+sudo cp ${ASSETS_FOLDER}/dump1090-fa/debian/lighttpd/88-dump1090-fa-statcache.conf /etc/lighttpd/conf.d/88-dump1090-fa-statcache.conf
 sudo chmod 666 /etc/lighttpd/lighttpd.conf
 echo "server.modules += ( \"mod_alias\" )" >> /etc/lighttpd/lighttpd.conf
 echo "include \"/etc/lighttpd/conf.d/89-skyaware.conf\"" >> /etc/lighttpd/lighttpd.conf
@@ -61,9 +73,15 @@ sudo systemctl start lighttpd
 echo -e "\e[01;32mConfiguring SELinux to run permissive for httpd \e[0;39m"
 echo -e "\e[01;32mThis will enable lighttpd to pull aircraft data \e[0;39m"
 echo -e "\e[01;32mfrom folder /var/run/dump1090-fa/ \e[0;39m"
+echo -e "\e[01;39m   sudo semanage permissive -a httpd_t \e[0;39m"
+
 sudo semanage permissive -a httpd_t
 
 echo -e "\e[01;32mConfiguring Firewall to permit display of SkyView from LAN/internet \e[0;39m"
+echo -e "\e[01;39m   sudo firewall-cmd --add-service=http \e[0;39m"
+echo -e "\e[01;39m   sudo firewall-cmd --runtime-to-permanent \e[0;39m"
+echo -e "\e[01;39m   sudo firewall-cmd --reload \e[0;39m"
+
 sudo firewall-cmd --add-service=http
 sudo firewall-cmd --runtime-to-permanent
 sudo firewall-cmd --reload

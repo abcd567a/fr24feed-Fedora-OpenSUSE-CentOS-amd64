@@ -27,6 +27,8 @@ echo -e "\e[01;32mBuilding dump1090-fa linux binary from source code \e[0;39m"
 cd ${ASSETS_FOLDER}
 sudo git clone https://github.com/flightaware/dump1090.git dump1090-fa
 cd ${ASSETS_FOLDER}/dump1090-fa
+git fetch --all
+git reset --hard origin/master
 sudo make BLADERF=no DUMP1090_VERSION=$(git describe --tags | sed 's/-.*//')
 
 echo -e "\e[01;32mCopying necessary files from cloned source code to the computer...\e[0;39m"

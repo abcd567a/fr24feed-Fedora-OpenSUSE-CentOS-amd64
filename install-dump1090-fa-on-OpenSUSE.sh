@@ -19,14 +19,8 @@ sudo zypper install -y lighttpd
 
 sudo zypper install -y libusb-1_0-0
 sudo zypper install -y libusb-compat-devel
-
-echo -e "\e[01;32mBuild & Install librtlsdr from private repository. \e[0;39m"
-sudo zypper addrepo https://download.opensuse.org/repositories/home:virtuallyNick:piaware/openSUSE_Tumbleweed/home:virtuallyNick:piaware.repo
-sudo zypper refresh
 sudo zypper install -y librtlsdr-devel
-
-sudo zypper removerepo home_virtuallyNick_piaware  
-sudo zypper refresh 
+sudo zypper install rtl-sdr-devel
 
 cd ${ASSETS_FOLDER}
 git clone https://github.com/steve-m/librtlsdr.git

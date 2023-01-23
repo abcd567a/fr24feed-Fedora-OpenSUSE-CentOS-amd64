@@ -17,6 +17,8 @@ echo -e "\e[01;32mBuild & Install librtlsdr from source code. \e[0;39m"
 cd ${ASSETS_FOLDER}
 git clone https://github.com/steve-m/librtlsdr.git
 cd ${ASSETS_FOLDER}/librtlsdr
+git fetch --all
+git reset --hard origin/master
 sudo mkdir build && cd build
 sudo cmake ../ -DINSTALL_UDEV_RULES=ON -DDETACH_KERNEL_DRIVER=ON -DLIB_INSTALL_DIR=/usr/lib64 -DCMAKE_INSTALL_PREFIX=/usr
 sudo make

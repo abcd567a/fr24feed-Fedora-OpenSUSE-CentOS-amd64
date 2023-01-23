@@ -58,7 +58,7 @@ WantedBy=multi-user.target
 EOM
 sudo chmod 644 ${SERVICE_FILE}
 
-sudo useradd --system fr24
+sudo useradd --system fr24 -U
 
 sudo systemctl enable fr24feed
 

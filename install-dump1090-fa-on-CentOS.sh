@@ -17,17 +17,28 @@ sudo yum install -y rtl-sdr
 sudo yum install -y rtl-sdr-devel
 sudo yum install -y lighttpd
 
+
+
+echo -e "\e[01;32mDownloading dump1090-fa Source Code from Github \e[0;39m"
+cd ${ASSETS_FOLDER}
+sudo git clone https://github.com/flightaware/dump1090.git dump1090-fa
+cd ${ASSETS_FOLDER}/dump1090-fa
+git fetch --all
+git reset --hard origin/master
+### sudo make BLADERF=no DUMP1090_VERSION=$(git describe --tags | sed 's/-.*//')
+### Note: Above `make` command fails due to old versions of `make` and `gcc` in CentOS repository.
+### We will therefore download pre-build binary from Github
+
 echo -e "\e[01;32mDownloading dump1090-fa linux binary from Github \e[0;39m"
 sudo wget -O ${ASSETS_FOLDER}/dump1090-fa "https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/releases/download/v8.2/dump1090-fa"
+echo -e "\e[01;32mMaking dump1090-fa linux binary executeable \e[0;39m"
 sudo chmod +x ${ASSETS_FOLDER}/dump1090-fa
+echo -e "\e[01;32mCopying Executeable Binary to folder `/usr/bin/` \e[0;39m"
+sudo cp ${ASSETS_FOLDER}/dump1090-fa /usr/bin/
 
 echo -e "\e[01;32mCopying necessary files from cloned source code to the computer...\e[0;39m"
-
-sudo cp ${ASSETS_FOLDER}/dump1090-fa/dump1090-fa /usr/bin/
-
 sudo mkdir -p /etc/default
 sudo cp ${ASSETS_FOLDER}/dump1090-fa/debian/dump1090-fa.default /etc/default/dump1090-fa
-
 
 sudo mkdir -p /usr/share/dump1090-fa/
 sudo cp ${ASSETS_FOLDER}/dump1090-fa/debian/start-dump1090-fa /usr/share/dump1090-fa/start-dump1090-fa

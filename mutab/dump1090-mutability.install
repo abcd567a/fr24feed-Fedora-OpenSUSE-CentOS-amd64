@@ -2,5 +2,5 @@ ASSETS_FOLDER=/usr/share/dump1090-assets
 
 ${ASSETS_FOLDER}/dump1090/debian/public_html/* usr/share/dump1090-mutability/html
 ${ASSETS_FOLDER}/89-dump etc/lighttpd/conf.d
-${ASSETS_FOLDER}/start-dump1090-mutability usr/share/dump1090-fa/
+${ASSETS_FOLDER}/start-dump1090-mutability usr/share/dump1090-mutability/
 ${ASSETS_FOLDER}/dump1090-mutability.service 

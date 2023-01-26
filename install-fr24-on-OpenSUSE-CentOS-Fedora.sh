@@ -590,6 +590,6 @@ echo " "
 echo -e "\e[01;33mAfter restarting fr24feed, check status of fr24feed:\e[0;39m"
 echo -e "\e[39m     sudo fr24feed-status  \e[39m"
 echo -e "\e[01;32mSee the Web Interface (Status & Settings) at\e[0;39m"
-echo -e "\e[39m     $(ip route | grep -m1 -o -P 'src \K[0-9,.]*'):8080 \e[39m" "\e[35m(IP-of-Computer:8080) \e[39m"
+echo -e "\e[39m     $(ip route | grep -m1 -o -P 'src \K[0-9,.]*'):8754 \e[39m" "\e[35m(IP-of-Computer:8754) \e[39m"
 
 

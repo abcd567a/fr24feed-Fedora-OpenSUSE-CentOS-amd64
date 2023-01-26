@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# Helper script that reads /etc/default/dump1090-fa
+# and either starts dump1090-fa with the configured
+# arguments, or exits with status 64 to tell systemd
+# not to auto-restart the service.
+
+if [ -f /etc/default/dump1090-mutability ]
+then
+    . /etc/default/dump1090-mutability
+
+fi
+
+if [ "x$ENABLED" != "xyes" ]
+then
+    echo "dump1090-fa not enabled in /etc/default/dump1090-mutability" >&2
+    exit 64
+fi
+
+exec /usr/bin/dump1090-mutability \
+     $RECEIVER_OPTIONS $DECODER_OPTIONS $NET_OPTIONS $JSON_OPTIONS $POSITION \
+     "$@"
+# exec failed, do not restart
+exit 64

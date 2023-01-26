@@ -22,7 +22,7 @@ sudo yum install -y lighttpd
 
 echo -e "\e[01;32mDownloading dump1090-mutability Source Code from Github \e[0;39m"
 cd ${ASSETS_FOLDER}
-sudo git clone -b unsupported https://github.com/mutability/dump1090.git
+sudo git clone -b unmaintained https://github.com/mutability/dump1090.git
 cd ${ASSETS_FOLDER}/dump1090
 sudo make DUMP1090_VERSION=$(git describe --tags | sed 's/-.*//')
 echo -e "\e[01;32mCopying Executeable Binary to folder `/usr/bin/` \e[0;39m"

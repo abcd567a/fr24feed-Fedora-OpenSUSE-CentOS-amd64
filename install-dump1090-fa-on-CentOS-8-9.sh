@@ -30,11 +30,11 @@ git reset --hard origin/master
 ### We will therefore download pre-build binary from Github
 
 echo -e "\e[01;32mDownloading dump1090-fa linux binary from Github \e[0;39m"
-sudo wget -O ${ASSETS_FOLDER}/dump1090-fa "https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/releases/download/v8.2/dump1090-fa"
+sudo wget -O ${ASSETS_FOLDER}/dump1090 "https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/releases/download/v8.2/dump1090"
 echo -e "\e[01;32mMaking dump1090-fa linux binary executeable \e[0;39m"
-sudo chmod +x ${ASSETS_FOLDER}/dump1090-fa
+sudo chmod +x ${ASSETS_FOLDER}/dump1090
 echo -e "\e[01;32mCopying Executeable Binary to folder `/usr/bin/` \e[0;39m"
-sudo cp ${ASSETS_FOLDER}/dump1090-fa /usr/bin/
+sudo cp ${ASSETS_FOLDER}/dump1090 /usr/bin/dump1090-fa
 
 echo -e "\e[01;32mCopying necessary files from cloned source code to the computer...\e[0;39m"
 sudo mkdir -p /etc/default

@@ -42,6 +42,9 @@ sudo cp ${ASSETS_FOLDER}/dump1090-mutability.default /etc/default/dump1090-mutab
 sudo mkdir -p /etc/lighttpd/conf.d
 sudo cp ${ASSETS_FOLDER}/89-dump1090.conf  /etc/lighttpd/conf.d/
 
+chkconfig --add dump1090-mutability 
+chkconfig --level 2345 dump1090-mutability on
+
 echo -e "\e[01;32mAdding system user dump1090 and adding it to group rtlsdr... \e[0;39m"
 echo -e "\e[01;32mThe user dump1090 will run the dump1090-fa service \e[0;39m"
 sudo useradd --system dump1090 

@@ -36,7 +36,7 @@ sudo wget -O ${ASSETS_FOLDER}/dump1090-mutability.service "https://github.com/ab
 
 echo -e "\e[01;32mCopying necessary downloaded files to the computer...\e[0;39m"
 sudo mkdir -p /usr/share/dump1090-mutability
-sudo cp -r ${ASSETS_FOLDER}/dump1090/debian/public_html /usr/share/dump1090-mutability/html
+sudo cp -r ${ASSETS_FOLDER}/dump1090/public_html /usr/share/dump1090-mutability/html
 sudo chmod +x ${ASSETS_FOLDER}/start-dump1090-mutability
 sudo cp ${ASSETS_FOLDER}/start-dump1090-mutability /usr/share/dump1090-mutability/
 

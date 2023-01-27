@@ -24,7 +24,8 @@ echo -e "\e[01;32mDownloading dump1090-mutability Source Code from Github \e[0;3
 cd ${ASSETS_FOLDER}
 sudo git clone -b unmaintained https://github.com/mutability/dump1090.git
 cd ${ASSETS_FOLDER}/dump1090
-sudo make DUMP1090_VERSION=$(git describe --tags | sed 's/-.*//')
+sudo make 
+## sudo make DUMP1090_VERSION=$(git describe --tags | sed 's/-.*//')
 echo -e "\e[01;32mCopying Executeable Binary to folder `/usr/bin/` \e[0;39m"
 sudo cp ${ASSETS_FOLDER}/dump1090/dump1090 /usr/bin/dump1090-mutability
 
@@ -57,7 +58,7 @@ sudo usermod -a -G rtlsdr dump1090
 echo -e "\e[01;32mPerforming Lighttpd integration to display Map ... \e[0;39m"
 sudo chmod 666 /etc/lighttpd/lighttpd.conf
 echo "server.modules += ( \"mod_alias\" )" >> /etc/lighttpd/lighttpd.conf
-echo "include \"/etc/lighttpd/conf.d/89-dump1090-mutability.conf\"" >> /etc/lighttpd/lighttpd.conf
+echo "include conf_dir + \"/conf.d/89-dump1090-mutability.conf\"" >> /etc/lighttpd/lighttpd.conf
 sudo sed -i 's/server.use-ipv6 = "enable"/server.use-ipv6 = "disable"/' /etc/lighttpd/lighttpd.conf
 sudo chmod 644 /etc/lighttpd/lighttpd.conf
 sudo systemctl enable lighttpd

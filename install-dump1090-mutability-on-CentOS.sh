@@ -60,7 +60,9 @@ sudo chmod 666 /etc/lighttpd/lighttpd.conf
 if [[ ! `grep "^server.modules += ( \"mod_alias\" )" /etc/lighttpd/lighttpd.conf` ]]; then
   echo "server.modules += ( \"mod_alias\" )" >> /etc/lighttpd/lighttpd.conf;
 fi
-echo "include conf_dir + \"/conf.d/89-dump1090-mutability.conf\"" >> /etc/lighttpd/lighttpd.conf
+if [[ ! `grep "89-dump1090-mutability.conf" /etc/lighttpd/lighttpd.conf` ]]; then
+  echo "include conf_dir + \"/conf.d/89-dump1090-mutability.conf\"" >> /etc/lighttpd/lighttpd.conf
+fi
 sudo sed -i 's/server.use-ipv6 = "enable"/server.use-ipv6 = "disable"/' /etc/lighttpd/lighttpd.conf
 sudo chmod 644 /etc/lighttpd/lighttpd.conf
 sudo systemctl enable lighttpd

@@ -26,3 +26,16 @@ Copy-paste following command in Terminal and press Enter Key: </br>
 `sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/install-fr24-on-OpenSUSE-CentOS-Fedora.sh)"  ` 
 </br></br>
 
+<br></br>
+
+![image](https://user-images.githubusercontent.com/28452511/215102356-ecc5f536-daba-491e-8399-92ede6708e1e.png)
+
+</br></br>
+
+![image](https://user-images.githubusercontent.com/28452511/215102121-ed02f52b-d408-48bc-8b86-c53c5f26e29b.png)
+
+</br></br>
+
+![image](https://user-images.githubusercontent.com/28452511/215103651-778d4100-9b28-42f1-87cf-9b2a1d1c1cfc.png)
+
+</br></br>

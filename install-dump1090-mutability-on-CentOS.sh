@@ -57,7 +57,9 @@ sudo usermod -a -G rtlsdr dump1090
 
 echo -e "\e[01;32mPerforming Lighttpd integration to display Map ... \e[0;39m"
 sudo chmod 666 /etc/lighttpd/lighttpd.conf
-echo "server.modules += ( \"mod_alias\" )" >> /etc/lighttpd/lighttpd.conf
+if [[ ! `grep "^server.modules += ( \"mod_alias\" )" /etc/lighttpd/lighttpd.conf` ]]; then
+  echo "server.modules += ( \"mod_alias\" )" >> /etc/lighttpd/lighttpd.conf;
+fi
 echo "include conf_dir + \"/conf.d/89-dump1090-mutability.conf\"" >> /etc/lighttpd/lighttpd.conf
 sudo sed -i 's/server.use-ipv6 = "enable"/server.use-ipv6 = "disable"/' /etc/lighttpd/lighttpd.conf
 sudo chmod 644 /etc/lighttpd/lighttpd.conf

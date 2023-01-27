@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ASSETS_FOLDER=/usr/share/dump1090-assets
 sudo mkdir -p ${ASSETS_FOLDER}
 
@@ -14,7 +16,7 @@ sudo yum install -y usbutils
 sudo yum install -y libusbx
 sudo yum install -y libusbx-devel
 sudo yum install -y ncurses-devel
-sudo yum install -y rtl-sdr 
+sudo yum install -y rtl-sdr
 sudo yum install -y rtl-sdr-devel
 sudo yum install -y lighttpd
 
@@ -24,8 +26,8 @@ echo -e "\e[01;32mDownloading dump1090-mutability Source Code from Github \e[0;3
 cd ${ASSETS_FOLDER}
 sudo git clone -b unmaintained https://github.com/mutability/dump1090.git
 cd ${ASSETS_FOLDER}/dump1090
-sudo make 
-## sudo make DUMP1090_VERSION=$(git describe --tags | sed 's/-.*//')
+sudo make
+##sudo make DUMP1090_VERSION=$(git describe --tags | sed 's/-.*//')
 echo -e "\e[01;32mCopying Executeable Binary to folder `/usr/bin/` \e[0;39m"
 sudo cp ${ASSETS_FOLDER}/dump1090/dump1090 /usr/bin/dump1090-mutability
 
@@ -50,7 +52,7 @@ sudo cp ${ASSETS_FOLDER}/89-dump1090-mutability.conf  /etc/lighttpd/conf.d/
 
 echo -e "\e[01;32mAdding system user dump1090 and adding it to group rtlsdr... \e[0;39m"
 echo -e "\e[01;32mThe user dump1090 will run the dump1090-fa service \e[0;39m"
-sudo useradd --system dump1090 
+sudo useradd --system dump1090
 echo -e "\e[01;32mInstalling rtl-sdr to create group rtlsdr and adding the\e[0;39m"
 echo -e "\e[01;32muser dump1090 to group rtlsdr to enable it to use rtlsdr Dongle ... \e[0;39m"
 sudo usermod -a -G rtlsdr dump1090

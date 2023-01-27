@@ -78,7 +78,7 @@ sudo systemctl restart dump1090-mutability
 
 echo -e "\e[01;32mConfiguring SELinux to run permissive for httpd \e[0;39m"
 echo -e "\e[01;32mThis will enable lighttpd to pull aircraft data \e[0;39m"
-echo -e "\e[01;32mfrom folder /var/run/dump1090-fa/ \e[0;39m"
+echo -e "\e[01;32mfrom folder /var/run/dump1090-mutability/ \e[0;39m"
 echo -e "\e[39m   sudo semanage permissive -a httpd_t \e[39m"
 
 sudo semanage permissive -a httpd_t

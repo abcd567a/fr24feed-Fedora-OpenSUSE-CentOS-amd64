@@ -92,9 +92,7 @@ sudo firewall-cmd --runtime-to-permanent
 sudo firewall-cmd --reload
 echo " "
 echo -e "\e[01;32mSee the Web Interface (Map etc) at\e[0;39m"
-echo -e "\e[39m     $(ip route | grep -m1 -o -P 'src \K[0-9,.]*')/dump1090-mutability/ \e[39m" "\e[35m(IP-of-Computer/dump1090-mutability/) \e[39m"
-echo -e "\e[01;32m   OR \e[0;39m"
-echo -e "\e[39m     $(ip route | grep -m1 -o -P 'src \K[0-9,.]*'):8080 \e[39m" "\e[35m(IP-of-Computer:8080) \e[39m"
+echo -e "\e[39m     $(ip route | grep -m1 -o -P 'src \K[0-9,.]*')/dump1090/gmap.html/ \e[39m" "\e[35m(IP-of-Computer/dump1090/gmap.html/) \e[39m"
 echo " "
 echo -e "\e[01;31mREBOOT Computer ... REBOOT Computer ... REBOOT Computer \e[0;39m"
 echo " "

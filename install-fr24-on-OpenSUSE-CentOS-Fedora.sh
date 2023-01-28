@@ -556,6 +556,14 @@ EOM
 
 sudo chmod +x ${STATUS_FILE}
 
+echo -e "\e[01;32mConfiguring Firewall to permit display of  \e[0;39m"
+echo -e "\e[01;32mFR24 Status & Settings web page at port 8754 from LAN/internet \e[0;39m"
+echo -e "\e[39m   sudo firewall-cmd --add-port=8754/tcp \e[39m"
+echo -e "\e[39m   sudo firewall-cmd --runtime-to-permanent \e[39m"
+
+sudo firewall-cmd --add-port=8754/tcp
+sudo firewall-cmd --runtime-to-permanent
+
 echo -e "\e[32mCreation of necessary files of \"fr24feed\" completed...\e[39m"
 
 echo -e "\e[32mSignup for \"fr24feed\" ...\e[39m"
@@ -569,13 +577,6 @@ sed -i '/raw/c\raw=\"no\"' /etc/fr24feed.ini
 sed -i '/bs/c\bs=\"no\"' /etc/fr24feed.ini
 sed -i '/mlat=/c\mlat=\"yes\"' /etc/fr24feed.ini
 sed -i '/mlat-without-gps=/c\mlat-without-gps=\"yes\"' /etc/fr24feed.ini
-echo -e "\e[01;32mConfiguring Firewall to permit display of  \e[0;39m"
-echo -e "\e[01;32mFR24 Status & Settings web page at port 8754 from LAN/internet \e[0;39m"
-echo -e "\e[39m   sudo firewall-cmd --add-port=8754/tcp \e[39m"
-echo -e "\e[39m   sudo firewall-cmd --runtime-to-permanent \e[39m"
-
-sudo firewall-cmd --add-port=8754/tcp
-sudo firewall-cmd --runtime-to-permanent
 echo " "
 echo " "
 echo -e "\e[01;32mInstallation of fr24feed completed...\e[39m"

@@ -81,9 +81,10 @@ sudo firewall-cmd --zone=public --add-service=http --permanent
 sudo firewall-cmd --zone=public --add-service=https --permanent
 sudo firewall-cmd --reload
 
-echo -e "\e[01;32mVerifying services opened in firewall\e[0;39m"
-sudo firewall-cmd --list-services
-sudo firewall-cmd --list-services --permanent 
+##echo -e "\e[01;32mVerifying services opened in firewall\e[0;39m"
+##sudo firewall-cmd --list-services
+##sudo firewall-cmd --list-services --permanent
+##sudo echo "List of Firewall Services Open: " `sudo firewall-cmd --list-services --permanent` 
 
 echo " "
 echo -e "\e[01;32mInstallation of dump1090-fa completed....\e[0;39m"

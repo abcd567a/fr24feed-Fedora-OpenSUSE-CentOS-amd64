@@ -3,16 +3,16 @@
 **STEP-2: Install FR24 data feeder "fr24feed"** </br>
 
 ### 1 - Dump1090
-**1.1: To install dump1090-mutability on CentOS 7:** </br> 
+**1.1: To install dump1090-fa on CentOS:** </br> 
 Copy-paste following command in Terminal and press Enter Key: </br>
 
-`sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/install-dump1090-mutability-on-CentOS-7.sh)"  ` 
+`sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/CentOS-8-9-dump1090-fa.sh)"  ` 
 </br></br>
 
-**1.2: To install dump1090-mutability on CentOS 8:** </br> 
+**1.2: To install dump1090-mutability on CentOS:** </br> 
 Copy-paste following command in Terminal and press Enter Key: </br>
 
-`sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/install-dump1090-mutability-on-CentOS-8.sh)"  ` 
+`sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/CentOS-8-9-dump1090-mutability.sh)"  ` 
 </br></br>
 
 

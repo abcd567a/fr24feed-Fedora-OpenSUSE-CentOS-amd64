@@ -21,20 +21,20 @@ Copy-paste following command in Terminal and press Enter Key: </br>
 **1.4 - Fedora-37 - install dump1090-fa:** </br> 
 Copy-paste following command in Terminal and press Enter Key: </br>
 
-`sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/install-dump1090-fa-on-Fedora37.sh)"  ` 
+`sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/Fedora37-dump1090-fa.sh)"  ` 
 </br></br>
 
 **1.5 - OpenSUSE 15 - install dump1090-fa:** </br> 
 Copy-paste following command in Terminal and press Enter Key: </br>
 
-`sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/install-dump1090-fa-on-OpenSUSE15.sh)"  ` 
+`sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/OpenSUSE15-dump1090-fa.sh)"  ` 
 </br></br>
 
 ### 2 - FR24 FEEDER
 **2 -  CentOS 8 & 9, Fedora 37, and OpenSUSE 15 - install fr24feed** </br> 
 Copy-paste following command in Terminal and press Enter Key: </br>
 
-`sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/install-fr24-on-OpenSUSE-CentOS-Fedora.sh)"  ` 
+`sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/FR24-OpenSUSE-CentOS-Fedora.sh)"  ` 
 </br></br>
 
 <br></br>

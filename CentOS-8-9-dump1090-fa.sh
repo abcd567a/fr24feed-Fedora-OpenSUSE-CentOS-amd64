@@ -26,16 +26,10 @@ sudo git clone https://github.com/flightaware/dump1090.git dump1090-fa
 cd ${ASSETS_FOLDER}/dump1090-fa
 git fetch --all
 git reset --hard origin/master
-### sudo make BLADERF=no DUMP1090_VERSION=$(git describe --tags | sed 's/-.*//')
-### Note: Above `make` command fails due to old versions of `make` and `gcc` in CentOS repository.
-### We will therefore download pre-build binary from Github
+sudo make BLADERF=no DUMP1090_VERSION=$(git describe --tags | sed 's/-.*//')
 
-echo -e "\e[01;32mDownloading dump1090-fa linux binary from Github \e[0;39m"
-sudo wget -O ${ASSETS_FOLDER}/dump1090-fa-8.2 "https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/releases/download/v1.0/dump1090-fa-8.2"
-echo -e "\e[01;32mMaking dump1090-fa linux binary executeable \e[0;39m"
-sudo chmod +x ${ASSETS_FOLDER}/dump1090-fa-8.2
 echo -e "\e[01;32mCopying Executeable Binary to folder `/usr/bin/` \e[0;39m"
-sudo cp ${ASSETS_FOLDER}/dump1090-fa-8.2 /usr/bin/dump1090-fa
+sudo cp ${ASSETS_FOLDER}/dump1090 /usr/bin/dump1090-fa
 
 echo -e "\e[01;32mCopying necessary files from cloned source code to the computer...\e[0;39m"
 sudo mkdir -p /etc/default
@@ -57,7 +51,7 @@ sudo cp ${ASSETS_FOLDER}/dump1090-fa/debian/dump1090-fa.service /usr/lib/systemd
 echo -e "\e[01;32mAdding system user dump1090 and adding it to group rtlsdr... \e[0;39m"
 echo -e "\e[01;32mThe user dump1090 will run the dump1090-fa service \e[0;39m"
 sudo useradd --system dump1090 
-echo -e "\e[01;32mInstalling rtl-sdr to create group rtlsdr and adding the\e[0;39m"
+echo -e "\e[01;32mGroup rtlsdr was created when installing rtl-sdr, now adding the\e[0;39m"
 echo -e "\e[01;32muser dump1090 to group rtlsdr to enable it to use rtlsdr Dongle ... \e[0;39m"
 sudo usermod -a -G rtlsdr dump1090
 sudo systemctl enable dump1090-fa
@@ -66,8 +60,12 @@ echo -e "\e[01;32mPerforming Lighttpd integration to display Skyaware Map ... \e
 sudo cp ${ASSETS_FOLDER}/dump1090-fa/debian/lighttpd/89-skyaware.conf /etc/lighttpd/conf.d/89-skyaware.conf
 sudo cp ${ASSETS_FOLDER}/dump1090-fa/debian/lighttpd/88-dump1090-fa-statcache.conf /etc/lighttpd/conf.d/88-dump1090-fa-statcache.conf
 sudo chmod 666 /etc/lighttpd/lighttpd.conf
-echo "server.modules += ( \"mod_alias\" )" >> /etc/lighttpd/lighttpd.conf
-echo "include \"/etc/lighttpd/conf.d/89-skyaware.conf\"" >> /etc/lighttpd/lighttpd.conf
+if [[ ! `grep "^server.modules += ( \"mod_alias\" )" /etc/lighttpd/lighttpd.conf` ]]; then
+  echo "server.modules += ( \"mod_alias\" )" >> /etc/lighttpd/lighttpd.conf
+fi
+if [[ ! `grep "89-skyaware.conf" /etc/lighttpd/lighttpd.conf` ]]; then
+  echo "include conf_dir + \"/conf.d/89-skyaware.conf\"" >> /etc/lighttpd/lighttpd.conf
+fi
 sudo sed -i 's/server.use-ipv6 = "enable"/server.use-ipv6 = "disable"/' /etc/lighttpd/lighttpd.conf
 sudo chmod 644 /etc/lighttpd/lighttpd.conf
 sudo systemctl enable lighttpd

@@ -14,7 +14,7 @@ sudo yum install -y usbutils
 sudo yum install -y libusbx
 sudo yum install -y libusbx-devel
 sudo yum install -y ncurses-devel
-sudo yum install -y rtl-sdr 
+sudo yum install -y rtl-sdr
 sudo yum install -y rtl-sdr-devel
 sudo yum install -y lighttpd
 
@@ -29,7 +29,7 @@ git reset --hard origin/master
 sudo make BLADERF=no DUMP1090_VERSION=$(git describe --tags | sed 's/-.*//')
 
 echo -e "\e[01;32mCopying Executeable Binary to folder `/usr/bin/` \e[0;39m"
-sudo cp ${ASSETS_FOLDER}/dump1090 /usr/bin/dump1090-fa
+sudo cp ${ASSETS_FOLDER}/dump1090-fa/dump1090 /usr/bin/dump1090-fa
 
 echo -e "\e[01;32mCopying necessary files from cloned source code to the computer...\e[0;39m"
 sudo mkdir -p /etc/default
@@ -50,7 +50,7 @@ sudo cp ${ASSETS_FOLDER}/dump1090-fa/debian/dump1090-fa.service /usr/lib/systemd
 
 echo -e "\e[01;32mAdding system user dump1090 and adding it to group rtlsdr... \e[0;39m"
 echo -e "\e[01;32mThe user dump1090 will run the dump1090-fa service \e[0;39m"
-sudo useradd --system dump1090 
+sudo useradd --system dump1090
 echo -e "\e[01;32mGroup rtlsdr was created when installing rtl-sdr, now adding the\e[0;39m"
 echo -e "\e[01;32muser dump1090 to group rtlsdr to enable it to use rtlsdr Dongle ... \e[0;39m"
 sudo usermod -a -G rtlsdr dump1090

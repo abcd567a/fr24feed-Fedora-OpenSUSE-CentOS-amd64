@@ -1,40 +1,37 @@
-## Install Flightradar24 feeder on Fedora-37, OpenSUSE-15, and CentOS-7,8,9 -AMD64
+## Install Flightradar24 feeder on Fedora-37, OpenSUSE-15, and CentOS-8 & 9 -AMD64
 **STEP-1: Install decoder "dump1090"** </br> 
 **STEP-2: Install FR24 data feeder "fr24feed"** </br>
 
 ### 1 - Dump1090
-**1.1: To install dump1090-fa on CentOS:** </br> 
+**IMPORTANT NOTE:** Install either "dump1090-fa" OR "dump1090-mutability". </br>
+Do NOT install both </br></br> 
+**1.1 - CentOS 8 and 9 - Install dump1090-fa:** </br> 
 Copy-paste following command in Terminal and press Enter Key: </br>
 
 `sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/CentOS-8-9-dump1090-fa.sh)"  ` 
 </br></br>
 
-**1.2: To install dump1090-mutability on CentOS:** </br> 
+**1.2 - CentOS 8 and 9 - Install dump1090-mutability:** </br> 
 Copy-paste following command in Terminal and press Enter Key: </br>
 
 `sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/CentOS-8-9-dump1090-mutability.sh)"  ` 
 </br></br>
 
 
-**1.3: To install dump1090-fa on CentOS 9:** </br> 
-Copy-paste following command in Terminal and press Enter Key: </br>
-
-`sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/install-dump1090-fa-on-CentOS-9.sh)"  ` 
-</br></br>
-
-**1.4: To install dump1090-fa on Fedora 37:** </br> 
+**1.4 - Fedora-37 - install dump1090-fa:** </br> 
 Copy-paste following command in Terminal and press Enter Key: </br>
 
 `sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/install-dump1090-fa-on-Fedora37.sh)"  ` 
 </br></br>
-**1.5: To install dump1090-fa on OpenSUSE 15:** </br> 
+
+**1.5 - OpenSUSE 15 - install dump1090-fa:** </br> 
 Copy-paste following command in Terminal and press Enter Key: </br>
 
 `sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/install-dump1090-fa-on-OpenSUSE15.sh)"  ` 
 </br></br>
 
 ### 2 - FR24 FEEDER
-**2: To install fr24feed on CentOS, Fedora and OpenSUSE:** </br> 
+**2 -  CentOS 8 & 9, Fedora 37, and OpenSUSE 15 - install fr24feed** </br> 
 Copy-paste following command in Terminal and press Enter Key: </br>
 
 `sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/install-fr24-on-OpenSUSE-CentOS-Fedora.sh)"  ` 

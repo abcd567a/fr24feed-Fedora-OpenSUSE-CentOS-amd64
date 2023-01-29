@@ -8,6 +8,7 @@ echo -e "\e[01;32mInstalling Tools & Dependencies.... \e[0;39m"
 sudo yum install -y git
 sudo yum install -y wget
 sudo yum install -y make
+sudo yum install -y gcc
 sudo yum install -y cmake
 sudo yum install -y usbutils
 sudo yum install -y libusbx

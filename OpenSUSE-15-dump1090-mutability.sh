@@ -53,7 +53,7 @@ sudo mkdir -p /etc/lighttpd/conf.d
 sudo cp ${ASSETS_FOLDER}/89-dump1090-mutability.conf  /etc/lighttpd/conf.d/
 
 echo -e "\e[01;32mAdding system user dump1090 and adding it to group rtlsdr... \e[0;39m"
-echo -e "\e[01;32mThe user dump1090 will run the dump1090-fa service \e[0;39m"
+echo -e "\e[01;32mThe user dump1090 will run the dump1090-mutability service \e[0;39m"
 sudo useradd --system dump1090
 echo -e "\e[01;32mHave installed rtl-sdr to create group rtlsdr, and now adding the\e[0;39m"
 echo -e "\e[01;32muser dump1090 to group rtlsdr to enable it to use rtlsdr Dongle ... \e[0;39m"

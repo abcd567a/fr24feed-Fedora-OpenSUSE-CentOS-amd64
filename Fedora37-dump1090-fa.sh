@@ -12,18 +12,20 @@ sudo dnf install -y libusb-devel
 sudo dnf install -y libusbx-devel
 sudo dnf install -y ncurses-devel
 sudo dnf install -y lighttpd
+sudo dnf install -y rtl-sdr
+sudo dnf install -y rtl-sdr-devel
 
-echo -e "\e[01;32mBuild & Install librtlsdr from source code. \e[0;39m"
-cd ${ASSETS_FOLDER}
-git clone https://github.com/steve-m/librtlsdr.git
-cd ${ASSETS_FOLDER}/librtlsdr
-git fetch --all
-git reset --hard origin/master
-sudo mkdir build && cd build
-sudo cmake ../ -DINSTALL_UDEV_RULES=ON -DDETACH_KERNEL_DRIVER=ON -DLIB_INSTALL_DIR=/usr/lib64 -DCMAKE_INSTALL_PREFIX=/usr
-sudo make
-sudo make install
-sudo ldconfig
+##echo -e "\e[01;32mBuild & Install librtlsdr from source code. \e[0;39m"
+##cd ${ASSETS_FOLDER}
+##git clone https://github.com/steve-m/librtlsdr.git
+##cd ${ASSETS_FOLDER}/librtlsdr
+##git fetch --all
+##git reset --hard origin/master
+##sudo mkdir build && cd build
+##sudo cmake ../ -DINSTALL_UDEV_RULES=ON -DDETACH_KERNEL_DRIVER=ON -DLIB_INSTALL_DIR=/usr/lib64 -DCMAKE_INSTALL_PREFIX=/usr
+##sudo make
+##sudo make install
+##sudo ldconfig
 
 echo -e "\e[01;32mBuilding dump1090-fa linux binary from source code \e[0;39m"
 cd ${ASSETS_FOLDER}
@@ -36,6 +38,7 @@ sudo make BLADERF=no DUMP1090_VERSION=$(git describe --tags | sed 's/-.*//')
 echo -e "\e[01;32mCopying necessary files from cloned source code to the computer...\e[0;39m"
 
 sudo cp ${ASSETS_FOLDER}/dump1090-fa/dump1090 /usr/bin/dump1090-fa
+sudo cp ${ASSETS_FOLDER}/dump1090-fa/view1090 /usr/bin/view1090
 
 sudo mkdir -p /etc/default
 sudo cp ${ASSETS_FOLDER}/dump1090-fa/debian/dump1090-fa.default /etc/default/dump1090-fa
@@ -57,9 +60,9 @@ sudo cp ${ASSETS_FOLDER}/dump1090-fa/debian/dump1090-fa.service /usr/lib/systemd
 echo -e "\e[01;32mAdding system user dump1090 and adding it to group rtlsdr... \e[0;39m"
 echo -e "\e[01;32mThe user dump1090 will run the dump1090-fa service \e[0;39m"
 sudo useradd --system dump1090 
-echo -e "\e[01;32mInstalling rtl-sdr to create group rtlsdr and adding the\e[0;39m"
+echo -e "\e[01;32mHave installed rtl-sdr to create group rtlsdr, now adding the\e[0;39m"
 echo -e "\e[01;32muser dump1090 to group rtlsdr to enable it to use rtlsdr Dongle ... \e[0;39m"
-sudo dnf install rtl-sdr -y
+
 sudo usermod -a -G rtlsdr dump1090
 sudo systemctl enable dump1090-fa
 

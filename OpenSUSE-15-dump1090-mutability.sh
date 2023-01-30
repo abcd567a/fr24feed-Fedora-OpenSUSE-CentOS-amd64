@@ -25,7 +25,7 @@ sudo zypper install -y rtl-sdr-devel
 echo -e "\e[01;32mDownloading dump1090-mutability Source Code from Github \e[0;39m"
 cd ${ASSETS_FOLDER}
 sudo git clone -b unmaintained https://github.com/abcd567a/dump1090-mutability.git dump1090-mutab
-cd ${ASSETS_FOLDER}/dump1090-mutability
+cd ${ASSETS_FOLDER}/dump1090-mutab
 sudo make
 ##sudo make DUMP1090_VERSION=$(git describe --tags | sed 's/-.*//')
 

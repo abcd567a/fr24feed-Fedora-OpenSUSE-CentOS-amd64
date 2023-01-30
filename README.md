@@ -2,36 +2,44 @@
 **STEP-1: Install decoder "dump1090"** </br> 
 **STEP-2: Install FR24 data feeder "fr24feed"** </br>
 
-### 1 - Dump1090
-**IMPORTANT NOTE:** Install either "dump1090-fa" OR "dump1090-mutability". </br>
-Do NOT install both </br></br> 
-**1.1 - CentOS 8 and 9 - Install dump1090-fa:** </br> 
+## 1 - Install dump1090
+**IMPORTANT NOTE:** </br> Install either "dump1090-fa" **OR** "dump1090-mutability". </br>
+**Do NOT install both** </br></br> 
+### OPTION - A: Install dump1090-fa </br>
+**A.1 - CentOS 8 and 9 - Install dump1090-fa:** </br> 
 Copy-paste following command in Terminal and press Enter Key: </br>
 
 `sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/CentOS-8-9-dump1090-fa.sh)"  ` 
 </br></br>
 
-**1.2 - CentOS 8 and 9 - Install dump1090-mutability:** </br> 
-Copy-paste following command in Terminal and press Enter Key: </br>
-
-`sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/CentOS-8-9-dump1090-mutability.sh)"  ` 
-</br></br>
-
-
-**1.4 - Fedora-37 - install dump1090-fa:** </br> 
+**A.2 - Fedora-37 - install dump1090-fa:** </br> 
 Copy-paste following command in Terminal and press Enter Key: </br>
 
 `sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/Fedora37-dump1090-fa.sh)"  ` 
 </br></br>
 
-**1.5 - OpenSUSE 15 - install dump1090-fa:** </br> 
+**A.3 - OpenSUSE 15 - install dump1090-fa:** </br> 
 Copy-paste following command in Terminal and press Enter Key: </br>
 
 `sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/OpenSUSE15-dump1090-fa.sh)"  ` 
 </br></br>
 
-### 2 - FR24 FEEDER
-**2 -  CentOS 8 & 9, Fedora 37, and OpenSUSE 15 - install fr24feed** </br> 
+### OPTION- B:  - Install dump1090-mutability </br>
+**B.1 - CentOS 8 and 9 - Install dump1090-mutability:** </br> 
+Copy-paste following command in Terminal and press Enter Key: </br>
+
+`sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/CentOS-8-9-dump1090-mutability.sh)"  ` 
+</br></br>
+
+**B.2 - OpenSUSE 15 - Install dump1090-mutability:** </br> 
+Copy-paste following command in Terminal and press Enter Key: </br>
+
+`sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/OpenSUSE-15-dump1090-mutability.sh)"  ` 
+</br></br>
+
+
+## 2 - FR24 FEEDER
+**CentOS 8 & 9, Fedora 37, and OpenSUSE 15 - install fr24feed** </br> 
 Copy-paste following command in Terminal and press Enter Key: </br>
 
 `sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/FR24-OpenSUSE-CentOS-Fedora.sh)"  ` 

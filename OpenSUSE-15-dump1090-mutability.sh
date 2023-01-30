@@ -47,7 +47,7 @@ sudo cp ${ASSETS_FOLDER}/start-dump1090-mutability /usr/share/dump1090-mutabilit
 
 sudo mkdir -p /etc/default
 sudo cp ${ASSETS_FOLDER}/dump1090-mutability.default /etc/default/dump1090-mutability
-sudo cp ${ASSETS_FOLDER}/dump1090-mutability.service  /lib/systemd/system/
+sudo cp ${ASSETS_FOLDER}/dump1090-mutability.service  /usr/lib/systemd/system/
 
 sudo mkdir -p /etc/lighttpd/conf.d
 sudo cp ${ASSETS_FOLDER}/89-dump1090-mutability.conf  /etc/lighttpd/conf.d/

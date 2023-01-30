@@ -69,11 +69,11 @@ wget -O ${INSTALL_FOLDER}/40-systemd "https://github.com/abcd567a/fr24feed-Fedor
 wget -O ${INSTALL_FOLDER}/fr24feed-status "https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/fr24/fr24feed-status"
 sudo chmod +x ${INSTALL_FOLDER}/fr24feed-status
 
-INIT_FUNCTIONS-FOLDER=/lib/lsb/
-sudo mkdir -p ${INIT_FUNCTIONS-FOLDER}
-sudo cp ${INSTALL_FOLDER}/init-functions ${INIT_FUNCTIONS-FOLDER}/init-functions
+INIT_FUNCTIONS_FOLDER=/lib/lsb/
+sudo mkdir -p ${INIT_FUNCTIONS_FOLDER}
+sudo cp ${INSTALL_FOLDER}/init-functions ${INIT_FUNCTIONS_FOLDER}/init-functions
 
-INIT_FUNCTIONS_D_FOLDER=${INIT_FUNCTIONS-FOLDER}/init-functions.d
+INIT_FUNCTIONS_D_FOLDER=${INIT_FUNCTIONS_FOLDER}/init-functions.d
 sudo mkdir -p ${INIT_FUNCTIONS_D_FOLDER}
 sudo cp ${INSTALL_FOLDER}/00-verbose ${INIT_FUNCTIONS_D_FOLDER}/00-verbose
 sudo cp ${INSTALL_FOLDER}/40-systemd ${INIT_FUNCTIONS_D_FOLDER}/40-systemd

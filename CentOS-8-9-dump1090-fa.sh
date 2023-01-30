@@ -30,6 +30,7 @@ sudo make BLADERF=no DUMP1090_VERSION=$(git describe --tags | sed 's/-.*//')
 
 echo -e "\e[01;32mCopying Executeable Binary to folder `/usr/bin/` \e[0;39m"
 sudo cp ${ASSETS_FOLDER}/dump1090-fa/dump1090 /usr/bin/dump1090-fa
+sudo cp ${ASSETS_FOLDER}/dump1090-fa/view1090 /usr/bin/view1090
 
 echo -e "\e[01;32mCopying necessary files from cloned source code to the computer...\e[0;39m"
 sudo mkdir -p /etc/default

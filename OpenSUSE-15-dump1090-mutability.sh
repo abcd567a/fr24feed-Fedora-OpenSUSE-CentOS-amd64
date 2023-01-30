@@ -31,6 +31,7 @@ sudo make
 
 echo -e "\e[01;32mCopying Executeable Binary to folder `/usr/bin/` \e[0;39m"
 sudo cp ${ASSETS_FOLDER}/dump1090-mutab/dump1090 /usr/bin/dump1090-mutability
+sudo cp ${ASSETS_FOLDER}/dump1090-mutab/view1090 /usr/bin/view1090
 
 echo -e "\e[01;32mDownloading dump1090-mutability Start, Service & Config files from Github \e[0;39m"
 sudo wget -O ${ASSETS_FOLDER}/dump1090-mutability.default  https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/mutab/dump1090-mutability.default

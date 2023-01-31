@@ -1,15 +1,15 @@
 #!/bin/bash
 
-INSTALL_FOLDER=/usr/share/fr24
+ASSETS_FOLDER=/usr/share/fr24-assets
 FR24_LINUX_ARCHIVE=fr24feed_1.0.34-0_amd64.tgz
-echo "Creating folder fr24"
-sudo mkdir ${INSTALL_FOLDER}
+echo "Creating folder fr24-assets"
+sudo mkdir ${ASSETS_FOLDER}
 echo "Downloading fr24feed amd64 binary file from Flightradar24"
-sudo wget -O ${INSTALL_FOLDER}/${FR24_LINUX_ARCHIVE} "https://repo-feed.flightradar24.com/linux_x86_64_binaries/${FR24_LINUX_ARCHIVE}"
+sudo wget -O ${ASSETS_FOLDER}/${FR24_LINUX_ARCHIVE} "https://repo-feed.flightradar24.com/linux_x86_64_binaries/${FR24_LINUX_ARCHIVE}"
 
 echo "Unzipping downloaded file"
-sudo tar xvzf ${INSTALL_FOLDER}/${FR24_LINUX_ARCHIVE} -C ${INSTALL_FOLDER}
-sudo cp ${INSTALL_FOLDER}/fr24feed_amd64/fr24feed /usr/bin/
+sudo tar xvzf ${ASSETS_FOLDER}/${FR24_LINUX_ARCHIVE} -C ${ASSETS_FOLDER}
+sudo cp ${ASSETS_FOLDER}/fr24feed_amd64/fr24feed /usr/bin/
 
 echo -e "\e[32mCreating necessary files for fr24feed......\e[39m"
 
@@ -63,23 +63,23 @@ sudo useradd --system fr24
 sudo systemctl enable fr24feed
 
 
-wget -O ${INSTALL_FOLDER}/init-functions "https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/fr24/init-functions"
-wget -O ${INSTALL_FOLDER}/00-verbose "https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/fr24/init-functions.d/00-verbose"
-wget -O ${INSTALL_FOLDER}/40-systemd "https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/fr24/init-functions.d/40-systemd"
-wget -O ${INSTALL_FOLDER}/fr24feed-status "https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/fr24/fr24feed-status"
-sudo chmod +x ${INSTALL_FOLDER}/fr24feed-status
+wget -O ${ASSETS_FOLDER}/init-functions "https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/fr24/init-functions"
+wget -O ${ASSETS_FOLDER}/00-verbose "https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/fr24/init-functions.d/00-verbose"
+wget -O ${ASSETS_FOLDER}/40-systemd "https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/fr24/init-functions.d/40-systemd"
+wget -O ${ASSETS_FOLDER}/fr24feed-status "https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/fr24/fr24feed-status"
+sudo chmod +x ${ASSETS_FOLDER}/fr24feed-status
 
 INIT_FUNCTIONS_FOLDER=/lib/lsb/
 sudo mkdir -p ${INIT_FUNCTIONS_FOLDER}
-sudo cp ${INSTALL_FOLDER}/init-functions ${INIT_FUNCTIONS_FOLDER}/init-functions
+sudo cp ${ASSETS_FOLDER}/init-functions ${INIT_FUNCTIONS_FOLDER}/init-functions
 
 INIT_FUNCTIONS_D_FOLDER=${INIT_FUNCTIONS_FOLDER}/init-functions.d
 sudo mkdir -p ${INIT_FUNCTIONS_D_FOLDER}
-sudo cp ${INSTALL_FOLDER}/00-verbose ${INIT_FUNCTIONS_D_FOLDER}/00-verbose
-sudo cp ${INSTALL_FOLDER}/40-systemd ${INIT_FUNCTIONS_D_FOLDER}/40-systemd
+sudo cp ${ASSETS_FOLDER}/00-verbose ${INIT_FUNCTIONS_D_FOLDER}/00-verbose
+sudo cp ${ASSETS_FOLDER}/40-systemd ${INIT_FUNCTIONS_D_FOLDER}/40-systemd
 
 STATUS_FILE_FOLDER=/usr/bin
-sudo cp ${INSTALL_FOLDER}/fr24feed-status ${STATUS_FILE_FOLDER}/fr24feed-status
+sudo cp ${ASSETS_FOLDER}/fr24feed-status ${STATUS_FILE_FOLDER}/fr24feed-status
 
 echo -e "\e[01;32mConfiguring Firewall to permit display of  \e[0;39m"
 echo -e "\e[01;32mFR24 Status & Settings web page at port 8754 from LAN/internet \e[0;39m"

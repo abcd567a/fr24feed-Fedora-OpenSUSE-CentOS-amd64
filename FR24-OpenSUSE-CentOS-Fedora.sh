@@ -92,7 +92,19 @@ sudo firewall-cmd --runtime-to-permanent
 echo -e "\e[32mCreation of necessary files of \"fr24feed\" completed...\e[39m"
 
 echo -e "\e[32mSignup for \"fr24feed\" ...\e[39m"
+## Read current timezone
+TZ_ORIGINAL=`timedatectl show | grep Timezone= | cut -d= -f2-`
+echo ${TZ_ORIGINAL}
+
+##Change temporarily to timezone GMT+0
+TZ_TEMP=GMT+0
+export TZ=${TZ_TEMP}
+
+##Signup
 sudo fr24feed --signup
+
+##Revert to original timezone
+export TZ=${TZ_ORIGINAL}
 
 sed -i '/receiver/c\receiver=\"avr-tcp\"' /etc/fr24feed.ini
 sed -i '/host/c\host=\"127.0.0.1:30002\"' /etc/fr24feed.ini

@@ -92,11 +92,11 @@ sudo firewall-cmd --runtime-to-permanent
 echo -e "\e[32mCreation of necessary files of \"fr24feed\" completed...\e[39m"
 
 echo -e "\e[32mSignup for \"fr24feed\" ...\e[39m"
-## Read current timezone
+## Read current timezone and store in a variable "TZ_ORIGINAL"
 TZ_ORIGINAL=`timedatectl show | grep Timezone= | cut -d= -f2-`
 echo ${TZ_ORIGINAL}
 
-##Change temporarily to timezone GMT+0
+##Change timezone temporarily to GMT+0
 export TZ=GMT+0
 
 ##Signup

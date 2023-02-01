@@ -97,8 +97,7 @@ TZ_ORIGINAL=`timedatectl show | grep Timezone= | cut -d= -f2-`
 echo ${TZ_ORIGINAL}
 
 ##Change temporarily to timezone GMT+0
-TZ_TEMP=GMT+0
-export TZ=${TZ_TEMP}
+export TZ=GMT+0
 
 ##Signup
 sudo fr24feed --signup

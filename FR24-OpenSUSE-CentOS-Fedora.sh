@@ -105,6 +105,8 @@ export TZ=GMT+0
 
 ##Signup
 sudo fr24feed --signup
+echo " "
+read -p "Press ENTER KEY to continue: "
 
 ##Revert to original timezone
 export TZ=${TZ_ORIGINAL}

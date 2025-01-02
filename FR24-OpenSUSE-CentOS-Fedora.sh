@@ -1,11 +1,13 @@
 #!/bin/bash
 
 ASSETS_FOLDER=/usr/share/fr24-assets
-FR24_LINUX_ARCHIVE=fr24feed_1.0.34-0_amd64.tgz
+## FR24_LINUX_ARCHIVE=fr24feed_1.0.34-0_amd64.tgz
+FR24_LINUX_ARCHIVE=fr24feed_1.0.48-0_amd64.tgz
 echo "Creating folder fr24-assets"
 sudo mkdir ${ASSETS_FOLDER}
 echo "Downloading fr24feed amd64 binary file from Flightradar24"
-sudo wget -O ${ASSETS_FOLDER}/${FR24_LINUX_ARCHIVE} "https://repo-feed.flightradar24.com/linux_x86_64_binaries/${FR24_LINUX_ARCHIVE}"
+## sudo wget -O ${ASSETS_FOLDER}/${FR24_LINUX_ARCHIVE} "https://repo-feed.flightradar24.com/linux_x86_64_binaries/${FR24_LINUX_ARCHIVE}"
+sudo wget -O ${ASSETS_FOLDER}/${FR24_LINUX_ARCHIVE} "https://repo-feed.flightradar24.com/linux_binaries/${FR24_LINUX_ARCHIVE}"
 
 echo "Unzipping downloaded file"
 sudo tar xvzf ${ASSETS_FOLDER}/${FR24_LINUX_ARCHIVE} -C ${ASSETS_FOLDER}

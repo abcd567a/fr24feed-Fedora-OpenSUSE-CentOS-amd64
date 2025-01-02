@@ -52,6 +52,7 @@ ExecStartPre=-/bin/mkdir -p /run/fr24feed
 ExecStartPre=-/bin/touch /dev/shm/decoder.txt
 ExecStartPre=-/bin/chown fr24 /dev/shm/decoder.txt /run/fr24feed /var/log/fr24feed
 ExecStart=/usr/bin/fr24feed
+ExecStop=/bin/kill -TERM $MAINPID
 User=fr24
 PermissionsStartOnly=true
 StandardOutput=null

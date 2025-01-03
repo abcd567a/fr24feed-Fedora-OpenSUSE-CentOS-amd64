@@ -53,7 +53,8 @@ ExecStart=/usr/bin/fr24feed
 ExecStop=/bin/kill -TERM $MAINPID
 User=fr24
 PermissionsStartOnly=true
-StandardOutput=null
+StandardOutput=journal
+StandardError=journal
 
 [Install]
 WantedBy=multi-user.target
@@ -97,7 +98,7 @@ sudo fr24feed --signup
 echo " "
 read -p "Press ENTER KEY to continue: "
 
-## Setting fr24feed.ini to receiver="avr-tcp" 
+## Setting fr24feed.ini to receiver="avr-tcp"
 sed -i '/receiver/c\receiver=\"avr-tcp\"' /etc/fr24feed.ini
 sed -i '/host/c\host=\"127.0.0.1:30002\"' /etc/fr24feed.ini
 if [[ ! `grep 'host' /etc/fr24feed.ini` ]]; then echo 'host="127.0.0.1:30002"' >>  /etc/fr24feed.ini; fi
@@ -110,23 +111,24 @@ echo " "
 echo " "
 echo -e "\e[01;32mInstallation of fr24feed completed...\e[39m"
 echo " "
-echo -e "\e[01;32m    Your fr24keys are in following config file\e[39m"
-echo -e "\e[01;33m    sudo nano /etc/fr24feed.ini  \e[39m"
-echo " "
-echo -e "\e[01;33m    To restart fr24feed:  sudo systemctl restart fr24feed  \e[39m"
-echo " "
-echo -e "\e[01;33m    To check log of fr24feed:  cat /var/log/fr24feed/fr24feed.log  \e[39m"
-echo " "
-echo -e "\e[01;33m    To check status of fr24feed:  sudo fr24feed-status  \e[39m"
+echo -e "\e[01;32m   Your fr24keys are in following config file\e[39m"
+echo -e "\e[01;33m      sudo nano /etc/fr24feed.ini  \e[39m"
 echo " "
 echo -e "\e[01;31mRESTART fr24feed ... RESTART fr24feed ... RESTART fr24feed ... \e[39m"
 echo -e "\e[01;31mRESTART fr24feed ... RESTART fr24feed ... RESTART fr24feed ... \e[39m"
 echo " "
-echo -e "\e[01;33m    sudo systemctl restart fr24feed \e[39m"
+echo -e "\e[01;33m       sudo systemctl restart fr24feed \e[39m"
 echo " "
-echo -e "\e[01;33mAfter restarting fr24feed, check status of fr24feed:\e[0;39m"
-echo -e "\e[39m     sudo fr24feed-status  \e[39m"
+echo -e "\e[01;33m   Few minutes after restarting fr24feed, check status of fr24feed:\e[0;39m"
+echo -e "\e[01;39m       sudo fr24feed-status  \e[39m"
+echo " "
+echo -e "\e[01;33m   To check log of fr24feed: \e[39m"
+echo -e "\e[01;39m      sudo journalctl -u fr24feed -e  \e[39m"
+echo " "
+echo -e "\e[01;33m   To check status of fr24feed: \e[39m"
+echo -e "\e[01;39m      sudo fr24feed-status 
+echo " "
 echo -e "\e[01;32mSee the Web Interface (Status & Settings) at\e[0;39m"
-echo -e "\e[39m     $(ip route | grep -m1 -o -P 'src \K[0-9,.]*'):8754 \e[39m" "\e[35m(IP-of-Computer:8754) \e[39m"
+echo -e "\e[01;39m     $(ip route | grep -m1 -o -P 'src \K[0-9,.]*'):8754 \e[39m" "\e[01;35m(IP-of-Computer:8754) \e[0;39m"
 
 

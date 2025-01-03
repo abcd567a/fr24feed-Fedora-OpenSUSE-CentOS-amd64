@@ -1,12 +1,10 @@
 #!/bin/bash
 
-ASSETS_FOLDER=/usr/share/fr24-assets
-## FR24_LINUX_ARCHIVE=fr24feed_1.0.34-0_amd64.tgz
 FR24_LINUX_ARCHIVE=fr24feed_1.0.48-0_amd64.tgz
+ASSETS_FOLDER=/usr/share/fr24-assets
 echo "Creating folder fr24-assets"
 sudo mkdir ${ASSETS_FOLDER}
 echo "Downloading fr24feed amd64 binary file from Flightradar24"
-## sudo wget -O ${ASSETS_FOLDER}/${FR24_LINUX_ARCHIVE} "https://repo-feed.flightradar24.com/linux_x86_64_binaries/${FR24_LINUX_ARCHIVE}"
 sudo wget -O ${ASSETS_FOLDER}/${FR24_LINUX_ARCHIVE} "https://repo-feed.flightradar24.com/linux_binaries/${FR24_LINUX_ARCHIVE}"
 
 echo "Unzipping downloaded file"
@@ -93,24 +91,13 @@ echo -e "\e[39m   sudo firewall-cmd --runtime-to-permanent \e[39m"
 sudo firewall-cmd --add-port=8754/tcp
 sudo firewall-cmd --runtime-to-permanent
 
-echo -e "\e[32mCreation of necessary files of \"fr24feed\" completed...\e[39m"
-
-echo -e "\e[32mSignup for \"fr24feed\" ...\e[39m"
-## Read current timezone and store in a variable "TZ_ORIGINAL"
-TZ_ORIGINAL=`timedatectl show | grep Timezone= | cut -d= -f2-`
-echo ${TZ_ORIGINAL}
-
-##Change timezone temporarily to GMT+0
-export TZ=GMT+0
-
 ##Signup
+echo -e "\e[32mSignup for \"fr24feed\" ...\e[39m"
 sudo fr24feed --signup
 echo " "
 read -p "Press ENTER KEY to continue: "
 
-##Revert to original timezone
-export TZ=${TZ_ORIGINAL}
-
+## Setting fr24feed.ini to receiver="avr-tcp" 
 sed -i '/receiver/c\receiver=\"avr-tcp\"' /etc/fr24feed.ini
 sed -i '/host/c\host=\"127.0.0.1:30002\"' /etc/fr24feed.ini
 if [[ ! `grep 'host' /etc/fr24feed.ini` ]]; then echo 'host="127.0.0.1:30002"' >>  /etc/fr24feed.ini; fi

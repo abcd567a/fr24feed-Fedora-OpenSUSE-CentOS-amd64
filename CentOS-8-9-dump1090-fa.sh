@@ -82,10 +82,12 @@ sudo semanage permissive -a httpd_t
 echo " "
 echo -e "\e[01;32mConfiguring Firewall to permit display of SkyView from LAN/internet \e[0;39m"
 echo -e "\e[39m   sudo firewall-cmd --add-service=http \e[39m"
+echo -e "\e[39m   sudo firewall-cmd --add-port=8080/tcp \e[39m"
 echo -e "\e[39m   sudo firewall-cmd --runtime-to-permanent \e[39m"
 echo -e "\e[39m   sudo firewall-cmd --reload \e[39m"
 
 sudo firewall-cmd --add-service=http
+sudo firewall-cmd --add-port=8080/tcp
 sudo firewall-cmd --runtime-to-permanent
 sudo firewall-cmd --reload
 echo " "

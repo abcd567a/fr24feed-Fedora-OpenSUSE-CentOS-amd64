@@ -27,7 +27,7 @@ yum install -y lighttpd
 
 echo -e "\e[01;32mDownloading dump1090-fa Source Code from Github \e[0;39m"
 cd ${ASSETS_FOLDER}
-sudo git clone https://github.com/flightaware/dump1090.git dump1090-fa
+sudo git clone --depth 1 https://github.com/flightaware/dump1090.git dump1090-fa
 cd ${ASSETS_FOLDER}/dump1090-fa
 make RTLSDR=yes DUMP1090_VERSION=$(git describe --tags | sed 's/-.*//')
 

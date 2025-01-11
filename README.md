@@ -12,10 +12,10 @@ Copy-paste following command in Terminal and press Enter Key: </br>
 `sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/CentOS-8-9-dump1090-fa.sh)"  ` 
 </br></br>
 
-**A.2 - Fedora-37 - install dump1090-fa:** </br> 
+**A.2 - Fedora-41 - install dump1090-fa:** </br> 
 Copy-paste following command in Terminal and press Enter Key: </br>
 
-`sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/Fedora37-dump1090-fa.sh)"  ` 
+`sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/Fedora41-dump1090-fa.sh)"  ` 
 </br></br>
 
 **A.3 - OpenSUSE 15 - install dump1090-fa:** </br> 

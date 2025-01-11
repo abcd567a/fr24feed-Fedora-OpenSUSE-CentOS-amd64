@@ -6,19 +6,13 @@
 **IMPORTANT NOTE:** </br> Install either "dump1090-fa" **OR** "dump1090-mutability". </br>
 **Do NOT install both** </br></br> 
 ### OPTION - A: Install dump1090-fa </br>
-**A.1 - CentOS 8 and 9 - Install dump1090-fa:** </br> 
+**A.1 - Fedora 41, CentOS 8 and 9 - Install dump1090-fa:** </br> 
 Copy-paste following command in Terminal and press Enter Key: </br>
 
-`sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/CentOS-8-9-dump1090-fa.sh)"  ` 
+`sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/Fedora-CentOS-dump1090-fa.sh)"  ` 
 </br></br>
 
-**A.2 - Fedora-41 - install dump1090-fa:** </br> 
-Copy-paste following command in Terminal and press Enter Key: </br>
-
-`sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/Fedora41-dump1090-fa.sh)"  ` 
-</br></br>
-
-**A.3 - OpenSUSE 15 - install dump1090-fa:** </br> 
+**A.2 - OpenSUSE 15 - install dump1090-fa:** </br> 
 Copy-paste following command in Terminal and press Enter Key: </br>
 
 `sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/OpenSUSE15-dump1090-fa.sh)"  ` 

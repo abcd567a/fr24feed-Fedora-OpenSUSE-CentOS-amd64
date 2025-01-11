@@ -22,7 +22,7 @@ Copy-paste following command in Terminal and press Enter Key: </br>
 **B.1 - CentOS 8 and 9 - Install dump1090-mutability:** </br> 
 Copy-paste following command in Terminal and press Enter Key: </br>
 
-`sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/CentOS-8-9-dump1090-mutability.sh)"  ` 
+`sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/install-dump1090-mutability-on-CentOS-8-9.sh)"  ` 
 </br></br>
 
 **B.2 - OpenSUSE 15 - Install dump1090-mutability:** </br> 

@@ -1,4 +1,4 @@
-## Install Flightradar24 feeder on Fedora-37, OpenSUSE-15, and CentOS-8 & 9 -AMD64
+## Install Flightradar24 feeder on Fedora, OpenSUSE, and CentOS -AMD64
 **STEP-1: Install decoder "dump1090"** </br> 
 **STEP-2: Install FR24 data feeder "fr24feed"** </br>
 

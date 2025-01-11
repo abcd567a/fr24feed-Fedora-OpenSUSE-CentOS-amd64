@@ -9,7 +9,7 @@
 **A.1 - Fedora 41, CentOS 8 and 9 - Install dump1090-fa:** </br> 
 Copy-paste following command in Terminal and press Enter Key: </br>
 
-`sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/Fedora-CentOS-dump1090-fa.sh)"  ` 
+`sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/Install-dump1090-fa-on-Fedora-CentOS.sh)"  ` 
 </br></br>
 
 **A.2 - OpenSUSE 15 - install dump1090-fa:** </br> 

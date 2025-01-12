@@ -14,7 +14,6 @@ yum install -y git
 yum install -y wget
 yum install -y make
 yum install -y gcc
-yum install -y cmake
 yum install -y usbutils
 yum install -y libusbx
 yum install -y libusbx-devel

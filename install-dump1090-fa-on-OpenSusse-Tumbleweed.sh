@@ -7,13 +7,13 @@ echo -e "\e[01;32mUpdating repositories.... \e[0;39m"
 zypper refresh
 
 echo -e "\e[01;32mInstalling Tools & Dependencies.... \e[0;39m"
-zypper -y install git
-zypper -y install make
-zypper -y  install gcc
-zypper -y install ncurses-devel
-zypper -y install rtl-sdr
-zypper -y install rtl-sdr-devel
-zypper -y install lighttpd
+zypper install -y git
+zypper install -y make
+zypper install -y gcc
+zypper install -y ncurses-devel
+zypper install -y rtl-sdr
+zypper install -y rtl-sdr-devel
+zypper install -y lighttpd
 
 cd ${ASSETS_FOLDER}
 

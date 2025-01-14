@@ -15,6 +15,8 @@ zypper install -y rtl-sdr
 zypper install -y rtl-sdr-devel
 zypper install -y lighttpd
 
+echo -e "\e[01;32mDownloading file rtl-sdr.rules from Github \e[0;39m"
+wget -O ${ASSETS_FOLDER}/rtl-sdr.rules https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/rtl-sdr.rules
 echo -e "\e[01;32mBuilding dump1090-fa linux binary from source code \e[0;39m"
 cd ${ASSETS_FOLDER}
 git clone https://github.com/flightaware/dump1090.git dump1090-fa
@@ -22,6 +24,7 @@ cd ${ASSETS_FOLDER}/dump1090-fa
 make RTLSDR=yes DUMP1090_VERSION=$(git describe --tags | sed 's/-.*//')
 
 echo -e "\e[01;32mCopying files from assets folder to appropriate folders...\e[0;39m"
+cp ${ASSETS_FOLDER}/rtl-sdr.rules /etc/udev/rules.d/rtl-sdr.rules
 cp ${ASSETS_FOLDER}/dump1090-fa/dump1090 /usr/bin/dump1090-fa
 mkdir -p /etc/default
 cp ${ASSETS_FOLDER}/dump1090-fa/debian/dump1090-fa.default /etc/default/dump1090-fa

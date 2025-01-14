@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ASSETS_FOLDER=/usr/share/dump1090-assets
-sudo mkdir -p ${ASSETS_FOLDER}
+mkdir -p ${ASSETS_FOLDER}
 
 echo -e "\e[01;32mUpdating repositories.... \e[0;39m"
 zypper refresh

@@ -21,7 +21,7 @@ Copy-paste following command in Terminal and press Enter Key: </br>
 **A.3 - OpenSUSE 15 Leap - install dump1090-fa:** </br> 
 Copy-paste following command in Terminal and press Enter Key: </br>
 
-`sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/OpenSUSE15-dump1090-fa.sh)"  ` 
+`sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/install-dump1090-fa-on-OpenSuse15-Leap.sh)"  ` 
 </br></br>
 
 ### OPTION- B:  - Install dump1090-mutability </br>

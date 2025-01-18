@@ -9,6 +9,7 @@ sudo wget -O ${ASSETS_FOLDER}/${FR24_LINUX_ARCHIVE} "https://repo-feed.flightrad
 
 echo "Unzipping downloaded file"
 sudo dnf install -y tar
+sudo zypper install -y tar
 sudo tar xvzf ${ASSETS_FOLDER}/${FR24_LINUX_ARCHIVE} -C ${ASSETS_FOLDER}
 sudo cp ${ASSETS_FOLDER}/fr24feed_amd64/fr24feed /usr/bin/
 

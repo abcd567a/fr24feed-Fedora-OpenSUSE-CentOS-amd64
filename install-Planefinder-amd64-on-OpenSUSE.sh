@@ -27,7 +27,7 @@ touch ${START_FILE}
 chmod 777 ${START_FILE}
 echo "Writing code to config file start-pfclient"
 /bin/cat <<EOM >${START_FILE}
-#!/bin/sh
+#!/bin/bash
 
 # Start script which  either starts pfclient with the configured
 # arguments, or exits with status 64 to tell systemd
@@ -48,15 +48,15 @@ chown pfc:pfc -R ${ASSETS_FOLDER}
 
 echo "Creating config file pfclient-config.json"
 touch /etc/pfclient-config.json
-chown pfc:pfc /etc/pfclient-config.json
+chown pfc /etc/pfclient-config.json
 
 echo "Creating Service file pfclient.service"
-SERVICE_FILE=/lib/systemd/system/pfclient.service
+SERVICE_FILE=/ettc/systemd/system/pfclient.service
 touch ${SERVICE_FILE}
 chmod 777 ${SERVICE_FILE}
 /bin/cat <<EOM >${SERVICE_FILE}
 # planefinder uploader service for systemd
-# install in /lib/systemd/system/
+# install in /etc/systemd/system/
 
 [Unit]
 Description=Planefinder Feeder
@@ -71,7 +71,7 @@ User=pfc
 PermissionsStartOnly=true
 ExecStartPre=-/bin/mkdir -p /var/log/pfclient
 ExecStartPre=-/bin/chown pfc /var/log/pfclient
-ExecStart=${START_FILE}
+ExecStart=/bin/bash/ \${START_FILE}
 ExecStop=/bin/kill -TERM \$MAINPID
 Restart=on-failure
 RestartSec=30

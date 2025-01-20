@@ -5,7 +5,7 @@ DOWNLOAD_LINK=http://client.planefinder.net
 ASSETS_FOLDER=/usr/share/pfclient-assets
 sudo mkdir ${ASSETS_FOLDER}
 
-echo "Installing wget and tarr packages if not already installed"
+echo "Installing wget and tar packages if not already installed"
 zypper install -y wget
 dnf install -y wget
 zypper install -y tar
@@ -44,14 +44,14 @@ exit 64
 EOM
 
 chmod +x ${START_FILE}
-chown pfc:pfc -R ${ASSETS_FOLDER}
+chown pfc -R ${ASSETS_FOLDER}
 
 echo "Creating config file pfclient-config.json"
 touch /etc/pfclient-config.json
 chown pfc /etc/pfclient-config.json
 
 echo "Creating Service file pfclient.service"
-SERVICE_FILE=/ettc/systemd/system/pfclient.service
+SERVICE_FILE=/etc/systemd/system/pfclient.service
 touch ${SERVICE_FILE}
 chmod 777 ${SERVICE_FILE}
 /bin/cat <<EOM >${SERVICE_FILE}

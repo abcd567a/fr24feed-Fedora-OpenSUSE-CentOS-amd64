@@ -34,26 +34,21 @@ echo "Writing code to config file start-pfclient"
 # not to auto-restart the service.
 
 DAEMON=/usr/bin/pfclient
-
 PIDFILE=/var/run/pfclient.pid
 LOGFILE=/var/log/pfclient
 CONFIGFILE=/etc/pfclient-config.json
 
-
-if [ -f /etc/pfclient-config.json ]
-then
-    . /etc/pfclient-config.json
-fi
-
-exec /usr/bin/pfclient $DAEMON -- -d -i $PIDFILE -z $CONFIGFILE -y $LOGFILE $ 2>/var/log/pfclient/eror.log
+$DAEMON --config_path=$CONFIGFILE --log_path=$LOGFILE  2>/var/log/pfclient/error.log
 # exec failed, do not restart
 exit 64
-
 EOM
 
 chmod +x ${START_FILE}
 chown pfc:pfc -R ${ASSETS_FOLDER}
 
+echo "Creating config file pfclient-config.json"
+touch /etc/pfclient-config.json
+chown pfc:pfc /etc/pfclient-config.json
 
 echo "Creating Service file pfclient.service"
 SERVICE_FILE=/lib/systemd/system/pfclient.service

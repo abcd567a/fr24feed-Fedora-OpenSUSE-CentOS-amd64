@@ -38,7 +38,7 @@ PIDFILE=/var/run/pfclient.pid
 LOGFILE=/var/log/pfclient
 CONFIGFILE=/etc/pfclient-config.json
 
-$DAEMON --config_path=$CONFIGFILE --log_path=$LOGFILE  2>/var/log/pfclient/error.log
+\$DAEMON --config_path=\$CONFIGFILE --log_path=\$LOGFILE  2>/var/log/pfclient/error.log
 # exec failed, do not restart
 exit 64
 EOM

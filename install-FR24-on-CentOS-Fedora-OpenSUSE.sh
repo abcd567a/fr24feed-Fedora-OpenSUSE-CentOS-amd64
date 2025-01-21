@@ -1,7 +1,7 @@
 #!/bin/bash
 
 FR24_LINUX_ARCHIVE=fr24feed_1.0.48-0_amd64.tgz
-ASSETS_FOLDER=/usr/share/fr24-assets
+ASSETS_FOLDER=/usr/share/fr24feed-assets
 echo "Creating folder fr24-assets"
 sudo mkdir ${ASSETS_FOLDER}
 echo "Downloading fr24feed amd64 binary file from Flightradar24"

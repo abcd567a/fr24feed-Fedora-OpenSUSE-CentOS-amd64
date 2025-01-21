@@ -32,7 +32,7 @@ mlat-without-gps="yes"
 EOM
 sudo chmod 644 ${CONFIG_FILE}
 
-SERVICE_FILE=/etc/systemd/system/fr24feed.service
+SERVICE_FILE=/usr/lib/systemd/system/fr24feed.service
 sudo touch ${SERVICE_FILE}
 sudo chmod 666 ${SERVICE_FILE}
 /bin/cat << \EOM >${SERVICE_FILE}

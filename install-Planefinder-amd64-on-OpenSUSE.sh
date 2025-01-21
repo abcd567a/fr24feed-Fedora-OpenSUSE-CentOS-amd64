@@ -51,7 +51,7 @@ touch /etc/pfclient-config.json
 chown pfc /etc/pfclient-config.json
 
 echo "Creating Service file pfclient.service"
-SERVICE_FILE=/etc/systemd/system/pfclient.service
+SERVICE_FILE=/usr/lib/systemd/system/pfclient.service
 touch ${SERVICE_FILE}
 chmod 777 ${SERVICE_FILE}
 /bin/cat <<EOM >${SERVICE_FILE}

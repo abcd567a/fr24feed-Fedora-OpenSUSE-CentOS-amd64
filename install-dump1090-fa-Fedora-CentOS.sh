@@ -4,29 +4,29 @@ ASSETS_FOLDER=/usr/share/dump1090-assets
 mkdir -p ${ASSETS_FOLDER}
 
 echo -e "\e[01;32mAdding EPEL repository... \e[0;39m"
-yum install -y epel-release
+dnf install -y epel-release
 
 echo -e "\e[01;32mUpdating repository... \e[0;39m"
-yum makecache
+dnf makecache
 
 echo -e "\e[01;32mInstalling Tools & Dependencies.... \e[0;39m"
-yum install -y git
-yum install -y wget
-yum install -y make
-yum install -y gcc
-yum install -y usbutils
-yum install -y libusbx
-yum install -y libusbx-devel
-yum install -y ncurses-devel
-yum install -y rtl-sdr
-yum install -y rtl-sdr-devel
-yum install -y lighttpd
+dnf install -y git
+dnf install -y wget
+dnf install -y make
+dnf install -y gcc
+dnf install -y usbutils
+dnf install -y libusbx
+dnf install -y libusbx-devel
+dnf install -y ncurses-devel
+dnf install -y rtl-sdr
+dnf install -y rtl-sdr-devel
+dnf install -y lighttpd
 
 
 
 echo -e "\e[01;32mDownloading dump1090-fa Source Code from Github \e[0;39m"
 cd ${ASSETS_FOLDER}
-sudo git clone -b dev --depth 1 https://github.com/flightaware/dump1090 dump1090-fa
+git clone -b dev --depth 1 https://github.com/flightaware/dump1090 dump1090-fa
 cd ${ASSETS_FOLDER}/dump1090-fa
 ##make RTLSDR=yes DUMP1090_VERSION=$(git describe --tags | sed 's/-.*//')
 make RTLSDR=yes DUMP1090_VERSION=$(head -1 debian/changelog | sed 's/.*(\([^)]*\).*/\1/')
@@ -48,7 +48,7 @@ cp ${ASSETS_FOLDER}/dump1090-fa/starch-benchmark  /usr/lib/dump1090-fa/
 mkdir -p /usr/share/skyaware/
 cp -r ${ASSETS_FOLDER}/dump1090-fa/public_html /usr/share/skyaware/html
 
-mkdir -p /usr/lib/systemd/system
+##mkdir -p /usr/lib/systemd/system
 cp ${ASSETS_FOLDER}/dump1090-fa/debian/dump1090-fa.service /usr/lib/systemd/system/dump1090-fa.service
 
 echo -e "\e[01;32mAdding system user dump1090 and adding it to group rtlsdr... \e[0;39m"

@@ -1,6 +1,8 @@
-## Install Flightradar24 feeder on Fedora, OpenSUSE, AlmaLinux and CentOS -AMD64
-**STEP-1: Install decoder "dump1090"** </br> 
-**STEP-2: Install FR24 data feeder "fr24feed"** </br>
+## Install Flightradar24 and Planefinder data feeders on Fedora, OpenSUSE, AlmaLinux and CentOS -AMD64
+**STEP-1: Install Decoder "dump1090"** </br> 
+**STEP-2: Install Flightradar24 data feeder "fr24feed"** </br>
+**STEP-3: Install Planefinder data feeder "pfclient"** </br>
+
 
 ## 1 - Install dump1090
 **IMPORTANT NOTE:** </br> Install either "dump1090-fa" **OR** "dump1090-mutability". </br>
@@ -43,6 +45,13 @@ Copy-paste following command in Terminal and press Enter Key: </br>
 Copy-paste following command in Terminal and press Enter Key: </br>
 
 `sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/install-FR24-amd64.sh)"  ` 
+</br></br>
+
+## 3 - PLANEFINDER FEEDER
+**CentOS 8, 9 & 10, Fedora 41, AlmaLinux 8 and 9, and OpenSUSE 15 - install fr24feed** </br> 
+Copy-paste following command in Terminal and press Enter Key: </br>
+
+`sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/install-Planefinder-amd64.sh)"  ` 
 </br></br>
 
 <br></br>

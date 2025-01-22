@@ -42,7 +42,7 @@ Copy-paste following command in Terminal and press Enter Key: </br>
 **CentOS 8, 9 & 10, Fedora 41, AlmaLinux 8 and 9, and OpenSUSE 15 - install fr24feed** </br> 
 Copy-paste following command in Terminal and press Enter Key: </br>
 
-`sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/install-FR24-on-CentOS-Fedora-OpenSUSE.sh)"  ` 
+`sudo bash -c "$(wget -O - https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/blob/main/install-FR24-amd64.sh)"  ` 
 </br></br>
 
 <br></br>

@@ -25,8 +25,6 @@ host="127.0.0.1:30002"
 fr24key="xxxxxxxxxxxxxxxx"
 bs="no"
 raw="no"
-logmode="1"
-logpath="/var/log/fr24feed"
 mlat="yes"
 mlat-without-gps="yes"
 EOM
@@ -46,10 +44,10 @@ Restart=always
 LimitCORE=infinity
 RuntimeDirectory=fr24feed
 RuntimeDirectoryMode=0755
-ExecStartPre=-/bin/mkdir -p /var/log/fr24feed
 ExecStartPre=-/bin/mkdir -p /run/fr24feed
 ExecStartPre=-/bin/touch /dev/shm/decoder.txt
 ExecStartPre=-/bin/chown fr24 /dev/shm/decoder.txt /run/fr24feed /var/log/fr24feed
+ExecStartPre=/usr/bin/fr24feed --validate-config --config-file=/etc/fr24feed.ini
 ExecStart=/usr/bin/fr24feed
 ExecStop=/bin/kill -TERM $MAINPID
 User=fr24

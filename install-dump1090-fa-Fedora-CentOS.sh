@@ -1,10 +1,14 @@
 #!/bin/bash
+set -e
 
-ASSETS_FOLDER=/usr/share/dump1090-assets
-mkdir -p ${ASSETS_FOLDER}
+BUILD_FOLDER=/usr/share/dump1090-builder
+mkdir -p ${BUILD_FOLDER}
+
+dnf install lsb-release -y
+OS_ID=`lsb_release -si`
 
 echo -e "\e[01;32mAdding EPEL repository... \e[0;39m"
-dnf install -y epel-release
+if [[ ! ${OS_ID} == "Fedora" ]]; then dnf install -y epel-release; fi
 
 echo -e "\e[01;32mUpdating repository... \e[0;39m"
 dnf makecache
@@ -25,31 +29,31 @@ dnf install -y lighttpd
 
 
 echo -e "\e[01;32mDownloading dump1090-fa Source Code from Github \e[0;39m"
-cd ${ASSETS_FOLDER}
+cd ${BUILD_FOLDER}
 git clone -b dev --depth 1 https://github.com/flightaware/dump1090 dump1090-fa
-cd ${ASSETS_FOLDER}/dump1090-fa
+cd ${BUILD_FOLDER}/dump1090-fa
 ##make RTLSDR=yes DUMP1090_VERSION=$(git describe --tags | sed 's/-.*//')
 make RTLSDR=yes DUMP1090_VERSION=$(head -1 debian/changelog | sed 's/.*(\([^)]*\).*/\1/')
 echo -e "\e[01;32mCopying Executeable Binary to folder `/usr/bin/` \e[0;39m"
-cp ${ASSETS_FOLDER}/dump1090-fa/dump1090 /usr/bin/dump1090-fa
-cp ${ASSETS_FOLDER}/dump1090-fa/view1090 /usr/bin/view1090
+cp ${BUILD_FOLDER}/dump1090-fa/dump1090 /usr/bin/dump1090-fa
+cp ${BUILD_FOLDER}/dump1090-fa/view1090 /usr/bin/view1090
 
 echo -e "\e[01;32mCopying necessary files from cloned source code to the computer...\e[0;39m"
 mkdir -p /etc/default
-cp ${ASSETS_FOLDER}/dump1090-fa/debian/dump1090-fa.default /etc/default/dump1090-fa
+cp ${BUILD_FOLDER}/dump1090-fa/debian/dump1090-fa.default /etc/default/dump1090-fa
 
 mkdir -p /usr/share/dump1090-fa/
-cp ${ASSETS_FOLDER}/dump1090-fa/debian/start-dump1090-fa /usr/share/dump1090-fa/start-dump1090-fa
-cp ${ASSETS_FOLDER}/dump1090-fa/debian/generate-wisdom /usr/share/dump1090-fa/
-cp ${ASSETS_FOLDER}/dump1090-fa/debian/upgrade-config /usr/share/dump1090-fa/
+cp ${BUILD_FOLDER}/dump1090-fa/debian/start-dump1090-fa /usr/share/dump1090-fa/start-dump1090-fa
+cp ${BUILD_FOLDER}/dump1090-fa/debian/generate-wisdom /usr/share/dump1090-fa/
+cp ${BUILD_FOLDER}/dump1090-fa/debian/upgrade-config /usr/share/dump1090-fa/
 mkdir -p /usr/lib/dump1090-fa
-cp ${ASSETS_FOLDER}/dump1090-fa/starch-benchmark  /usr/lib/dump1090-fa/
+cp ${BUILD_FOLDER}/dump1090-fa/starch-benchmark  /usr/lib/dump1090-fa/
 
 mkdir -p /usr/share/skyaware/
-cp -r ${ASSETS_FOLDER}/dump1090-fa/public_html /usr/share/skyaware/html
+cp -r ${BUILD_FOLDER}/dump1090-fa/public_html /usr/share/skyaware/html
 
 ##mkdir -p /usr/lib/systemd/system
-cp ${ASSETS_FOLDER}/dump1090-fa/debian/dump1090-fa.service /usr/lib/systemd/system/dump1090-fa.service
+cp ${BUILD_FOLDER}/dump1090-fa/debian/dump1090-fa.service /usr/lib/systemd/system/dump1090-fa.service
 
 echo -e "\e[01;32mAdding system user dump1090 and adding it to group rtlsdr... \e[0;39m"
 echo -e "\e[01;32mThe user dump1090 will run the dump1090-fa service \e[0;39m"
@@ -60,8 +64,8 @@ usermod -a -G rtlsdr dump1090
 systemctl enable dump1090-fa
 
 echo -e "\e[01;32mPerforming Lighttpd integration to display Skyaware Map ... \e[0;39m"
-cp ${ASSETS_FOLDER}/dump1090-fa/debian/lighttpd/89-skyaware.conf /etc/lighttpd/conf.d/89-skyaware.conf
-cp ${ASSETS_FOLDER}/dump1090-fa/debian/lighttpd/88-dump1090-fa-statcache.conf /etc/lighttpd/conf.d/88-dump1090-fa-statcache.conf
+cp ${BUILD_FOLDER}/dump1090-fa/debian/lighttpd/89-skyaware.conf /etc/lighttpd/conf.d/89-skyaware.conf
+cp ${BUILD_FOLDER}/dump1090-fa/debian/lighttpd/88-dump1090-fa-statcache.conf /etc/lighttpd/conf.d/88-dump1090-fa-statcache.conf
 chmod 666 /etc/lighttpd/lighttpd.conf
 if [[ ! `grep "^server.modules += ( \"mod_alias\" )" /etc/lighttpd/lighttpd.conf` ]]; then
   echo "server.modules += ( \"mod_alias\" )" >> /etc/lighttpd/lighttpd.conf
@@ -79,7 +83,7 @@ echo -e "\e[01;32mThis will enable lighttpd to pull aircraft data \e[0;39m"
 echo -e "\e[01;32mfrom folder /var/run/dump1090-fa/ \e[0;39m"
 echo -e "\e[39m   sudo semanage permissive -a httpd_t \e[39m"
 
-semanage permissive -a httpd_t
+if [[ OS_ID == "Fedora" ]]; then semanage permissive -a httpd_t; fi
 
 echo " "
 echo -e "\e[01;32mConfiguring Firewall to permit display of SkyView from LAN/internet \e[0;39m"

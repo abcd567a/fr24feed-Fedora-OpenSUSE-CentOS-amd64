@@ -8,7 +8,7 @@ dnf install lsb_release
 OS_ID=`lsb-release -si`
 echo -e "\e[01;32mUpdating repository... \e[0;39m"
 if [[ ! ${OS_ID} == "Fedora" ]]; then dnf install epel-release; fi
-dnf -Sy
+dnf update
 dnf makecache
 
 echo -e "\e[01;32mInstalling Tools & Dependencies.... \e[0;39m"
@@ -24,7 +24,6 @@ dnf install tcllib -y
 dnf install tcltls -y
 dnf install tk -y
 dnf install tcl -y
-dnf install itcl -y
 
 echo -e "\e[01;32mBuilding & Installing tcllauncher using Source Code from Github \e[0;39m"
 cd ${BUILD_FOLDER}
@@ -65,9 +64,9 @@ git clone https://github.com/flightaware/piaware.git
 cd piaware
 make install
 ln -s /usr/lib/fa_adept_codec /usr/share/tcl8.6
-cp ${INST_FOLDER}/faup1090/faup1090 /usr/lib/piaware/helpers/
+cp ${BUILD_FOLDER}/faup1090/faup1090 /usr/lib/piaware/helpers/
 cp /usr/local/bin/fa-mlat-client /usr/lib/piaware/helpers/
-install -Dm440 ${INST_FOLDER}/piaware/etc/piaware.sudoers /etc/sudoers.d/piaware
+install -Dm440 ${BUILD_FOLDER}/piaware/etc/piaware.sudoers /etc/sudoers.d/piaware
 systemctl enable generate-pirehose-cert.service
 
 adduser --system piaware

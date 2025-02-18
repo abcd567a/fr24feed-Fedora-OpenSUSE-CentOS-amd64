@@ -18,12 +18,12 @@ dnf install net-tools -y
 dnf install openssl-devel -y
 dnf install openssl-perl -y
 dnf install python3-devel -y
-dnf install tclx -y
 dnf install tcl-devel -y
 dnf install tcllib -y
 dnf install tcltls -y
 dnf install tk -y
 dnf install tcl -y
+if [[ ${OS_ID} == "Fedora" ]]; then dnf install tclx; fi
 
 echo -e "\e[01;32mBuilding & Installing tcllauncher using Source Code from Github \e[0;39m"
 cd ${BUILD_FOLDER}

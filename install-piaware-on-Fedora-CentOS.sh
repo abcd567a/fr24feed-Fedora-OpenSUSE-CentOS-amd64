@@ -31,11 +31,9 @@ dnf install tcl-devel -y
 dnf install tcllib -y
 dnf install tcltls -y
 dnf install tk -y
-dnf install python3-wheel -y
-dnf install python3-devel -y
-dnf install python3-pyasyncore -y
 if [[ `lsb_release -si == "Fedora"` ]]; then 
-   dnf install tclx; 
+  dnf install python3-pyasyncore -y
+  dnf install tclx; 
 else
   echo -e "\e[01;32mBuilding & Installing tclx using Source Code from Github \e[0;39m"
   sleep 3
@@ -77,6 +75,10 @@ git clone https://github.com/mutability/mlat-client.git
 cd mlat-client
 ./setup.py build
 ./setup.py install
+
+##dnf install python3-wheel -y
+##dnf install python3-devel -y
+##dnf install python3-pyasyncore -y
 ##python3 -m build --wheel --no-isolation
 
 echo -e "\e[01;95mBuilding & Installing faup1090 using Source Code from Github \e[0;39m"

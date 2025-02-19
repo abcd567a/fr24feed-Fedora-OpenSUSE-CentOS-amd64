@@ -18,6 +18,7 @@ if [[ `cat /etc/os-release | grep CentOS` ]] || [[ `cat /etc/os-release | grep A
 else
   dnf install lsb-release -y
 fi
+
 OS_ID=`lsb_release -si`
 
 dnf makecache

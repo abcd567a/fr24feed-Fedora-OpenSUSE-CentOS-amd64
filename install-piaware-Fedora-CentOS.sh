@@ -39,6 +39,7 @@ dnf install tcltls -y
 dnf install tk -y
 dnf install python3-setuptools -y
 dnf install python3-devel -y
+
 if [[ `lsb_release -si` == "Fedora" ]]; then
   dnf install python3-pyasyncore -y
   dnf install itcl -y
@@ -77,12 +78,6 @@ autoconf
 make
 make install
 ln -sf /usr/lib/Tcllauncher1.10 /usr/share/tcl8.6
-
-
-
-
-
-
 
 echo -e "\e[01;95mBuilding & Installing mlat-client & fa-mlat-client using Source Code from Github \e[0;39m"
 sleep 3

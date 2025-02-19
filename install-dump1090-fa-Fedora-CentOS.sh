@@ -13,6 +13,8 @@ if [[ `cat /etc/os-release | grep CentOS` ]] || [[ `cat /etc/os-release | grep A
   echo -e "\e[01;32mInstalling package lsb_release to identify the OS \e[0;39m"
   sleep 3
   dnf install lsb-release -y
+else
+  dnf install lsb-release -y
 fi
 
 OS_ID=`lsb_release -si`

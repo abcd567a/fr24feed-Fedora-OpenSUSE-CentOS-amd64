@@ -2,16 +2,23 @@
 set -e
 
 BUILD_FOLDER=/usr/share/piaware-builder
-sudo mkdir -p ${BUILD_FOLDER}
+echo -e "\e[01;95mCreating Build Folder\e[0;32m" ${BUILD_FOLDER} "\e[01;95mto hold source codes \e[0;39m"
+sleep 3
+mkdir -p ${BUILD_FOLDER}
 
+echo -e "\e[01;32mInstalling package lsb_release to identify the OS \e[0;39m"
+sleep 3
 dnf install lsb_release
 OS_ID=`lsb-release -si`
+
 echo -e "\e[01;32mUpdating repository... \e[0;39m"
+sleep 3
 if [[ ! ${OS_ID} == "Fedora" ]]; then dnf install epel-release; fi
 dnf update
 dnf makecache
 
 echo -e "\e[01;32mInstalling Tools & Dependencies.... \e[0;39m"
+sleep 3
 dnf install autoconf -y
 dnf install ncurses-devel -y
 dnf install net-tools -y
@@ -25,10 +32,10 @@ dnf install tk -y
 dnf install python3-wheel -y
 dnf install python3-devel -y
 dnf install python3-pyasyncore -y
-
 if [[ ${OS_ID} == "Fedora" ]]; then dnf install tclx; fi
 
 echo -e "\e[01;32mBuilding & Installing tcllauncher using Source Code from Github \e[0;39m"
+sleep 3
 cd ${BUILD_FOLDER}
 git clone https://github.com/flightaware/tcllauncher.git
 cd tcllauncher
@@ -38,6 +45,7 @@ make
 make install
 
 echo -e "\e[01;95mBuilding & Installing itcl using Source Code from Github \e[0;39m"
+sleep 3
 cd ${BUILD_FOLDER}
 git clone https://github.com/tcltk/itcl.git
 cd itcl
@@ -49,6 +57,7 @@ make install
 ln -sf /usr/lib/itcl4.3.2 /usr/share/tcl8.6
 
 echo -e "\e[01;95mBuilding & Installing mlat-client & fa-mlat-client using Source Code from Github \e[0;39m"
+sleep 3
 cd ${BUILD_FOLDER}
 git clone https://github.com/mutability/mlat-client.git
 cd mlat-client
@@ -57,12 +66,14 @@ cd mlat-client
 ##python3 -m build --wheel --no-isolation
 
 echo -e "\e[01;95mBuilding & Installing faup1090 using Source Code from Github \e[0;39m"
+sleep 3
 cd ${BUILD_FOLDER}
 git clone https://github.com/flightaware/dump1090 faup1090
 cd faup1090
 make faup1090
 
 echo -e "\e[01;95mBuilding & Installing PIAWARE using Source Code from Github \e[0;39m"
+sleep 3
 cd ${BUILD_FOLDER}
 git clone https://github.com/flightaware/piaware.git
 cd piaware
@@ -80,3 +91,24 @@ sudo install -d -o piaware -g piaware /var/cache/piaware
 systemctl enable piaware.service
 systemctl start piaware.service
 
+echo ""
+echo -e "\e[32mPIAWARE INSTALLATION COMPLETED \e[39m"
+echo ""
+echo -e "\e[39mIf you already have  feeder-id, please configure piaware with it \e[39m"
+echo -e "\e[39mFeeder Id is available on this address while loggedin: \e[39m"
+echo -e "\e[94m    https://flightaware.com/adsb/stats/user/ \e[39m"
+echo ""
+echo -e "\e[39m    sudo piaware-config feeder-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \e[39m"
+echo -e "\e[39m    sudo piaware-config allow-manual-updates yes \e[39m"
+echo -e "\e[39m    sudo piaware-config allow-auto-updates yes \e[39m"
+
+if [[ `ps --no-headers -o comm 1` == "systemd" ]]; then
+   echo -e "\e[39m    sudo systemctl restart piaware \e[39m"
+else
+   echo -e "\e[39m    sudo service piaware restart \e[39m"
+fi
+
+echo ""
+echo -e "\e[39mIf you dont already have a feeder-id, please go to Flightaware Claim page while loggedin \e[39m"
+echo -e "\e[94m    https://flightaware.com/adsb/piaware/claim \e[39m"
+echo ""

@@ -59,6 +59,7 @@ autoconf
 ./configure --prefix=/usr/share/piaware-builder --with-tcl=/usr/lib64/tclConfig.sh
 make
 make install
+ln -sf /usr/lib/Tcllauncher1.10 /usr/share/tcl8.6
 
 echo -e "\e[01;95mBuilding & Installing itcl using Source Code from Github \e[0;39m"
 sleep 3
@@ -98,16 +99,20 @@ cd ${BUILD_FOLDER}
 git clone https://github.com/flightaware/piaware.git
 cd piaware
 make install
+
+adduser --system piaware
+
 ln -sf /usr/lib/piaware_packages /usr/share/tcl8.6
 ln -sf /usr/lib/fa_adept_codec /usr/share/tcl8.6
 cp ${BUILD_FOLDER}/faup1090/faup1090 /usr/lib/piaware/helpers/
 cp /usr/local/bin/fa-mlat-client /usr/lib/piaware/helpers/
 install -Dm440 ${BUILD_FOLDER}/piaware/etc/piaware.sudoers /etc/sudoers.d/piaware
-systemctl enable generate-pirehose-cert.service
-
-adduser --system piaware
+touch /etc/piaware.conf
+chown piaware:piaware /etc/piaware.conf
 sudo install -d -o piaware -g piaware /var/cache/piaware
 
+systemctl enable generate-pirehose-cert.service
+systemctl start generate-pirehose-cert.service
 systemctl enable piaware.service
 systemctl start piaware.service
 

@@ -33,6 +33,8 @@ dnf install tcl-devel -y
 dnf install tcllib -y
 dnf install tcltls -y
 dnf install tk -y
+dnf install python3-setuptools -y
+dnf install python3-devel -y
 if [[ `lsb_release -si` == "Fedora" ]]; then
   dnf install python3-pyasyncore -y
   dnf install tclx =y

@@ -10,8 +10,10 @@ echo -e "\e[01;32mUpdating repository... \e[0;39m"
 sleep 3
 if [[ `cat /etc/os-release | grep CentOS` ]] || [[ `cat /etc/os-release | grep AlmaLinux` ]] ; then 
   echo -e "\e[01;32mAdding EPEL repository by installing epel-release package \e[0;39m"
+  sleep 3
   dnf install epel-release -y
   echo -e "\e[01;32mInstalling package lsb_release to identify the OS \e[0;39m"
+  sleep 3
   dnf install lsb-release -y
 fi
 dnf update
@@ -36,6 +38,7 @@ if [[ `lsb_release -si == "Fedora"` ]]; then
    dnf install tclx; 
 else
   echo -e "\e[01;32mBuilding & Installing tclx using Source Code from Github \e[0;39m"
+  sleep 3
   cd ${BUILD_FOLDER}
   git clone https://github.com/flightaware/tclx.git
   cd tclx

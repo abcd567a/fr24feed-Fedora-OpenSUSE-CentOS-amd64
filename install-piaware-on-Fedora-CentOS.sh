@@ -22,6 +22,7 @@ dnf makecache
 echo -e "\e[01;32mInstalling Tools & Dependencies.... \e[0;39m"
 sleep 3
 dnf install git -y
+dnf install gcc -y
 dnf install autoconf -y
 dnf install ncurses-devel -y
 dnf install net-tools -y

@@ -53,6 +53,18 @@ else
   make
   make install
   ln -sf /usr/lib/tclx8.6 /usr/share/tcl8.6
+
+  echo -e "\e[01;95mBuilding & Installing itcl using Source Code from Github \e[0;39m"
+  sleep 3
+  cd ${BUILD_FOLDER}
+  git clone https://github.com/tcltk/itcl.git
+  cd itcl
+  ./configure
+  make all
+  make test
+  ln -sf itclWidget/tclconfig tclconfig
+  make install
+  ln -sf /usr/lib/itcl4.3.2 /usr/share/tcl8.6
 fi
 
 echo -e "\e[01;32mBuilding & Installing tcllauncher using Source Code from Github \e[0;39m"
@@ -66,17 +78,11 @@ make
 make install
 ln -sf /usr/lib/Tcllauncher1.10 /usr/share/tcl8.6
 
-echo -e "\e[01;95mBuilding & Installing itcl using Source Code from Github \e[0;39m"
-sleep 3
-cd ${BUILD_FOLDER}
-git clone https://github.com/tcltk/itcl.git
-cd itcl
-./configure
-make all
-make test
-ln -sf itclWidget/tclconfig tclconfig
-make install
-ln -sf /usr/lib/itcl4.3.2 /usr/share/tcl8.6
+
+
+
+
+
 
 echo -e "\e[01;95mBuilding & Installing mlat-client & fa-mlat-client using Source Code from Github \e[0;39m"
 sleep 3

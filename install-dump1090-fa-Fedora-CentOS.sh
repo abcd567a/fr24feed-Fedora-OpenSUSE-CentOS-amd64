@@ -2,13 +2,20 @@
 set -e
 
 BUILD_FOLDER=/usr/share/dump1090-builder
+echo -e "\e[01;95mCreating Build Folder\e[0;32m" ${BUILD_FOLDER} "\e[01;95mto hold source codes \e[0;39m"
+sleep 3
 mkdir -p ${BUILD_FOLDER}
 
-dnf install lsb-release -y
-OS_ID=`lsb_release -si`
+if [[ `cat /etc/os-release | grep CentOS` ]] || [[ `cat /etc/os-release | grep AlmaLinux` ]] ; then 
+  echo -e "\e[01;32mAdding EPEL repository by installing epel-release package \e[0;39m"
+  sleep 3
+  dnf install epel-release -y
+  echo -e "\e[01;32mInstalling package lsb_release to identify the OS \e[0;39m"
+  sleep 3
+  dnf install lsb-release -y
+fi
 
-echo -e "\e[01;32mAdding EPEL repository... \e[0;39m"
-if [[ ! ${OS_ID} == "Fedora" ]]; then dnf install -y epel-release; fi
+OS_ID=`lsb_release -si`
 
 echo -e "\e[01;32mUpdating repository... \e[0;39m"
 dnf makecache

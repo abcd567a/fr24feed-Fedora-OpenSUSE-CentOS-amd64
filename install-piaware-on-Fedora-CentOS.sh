@@ -41,7 +41,7 @@ dnf install python3-setuptools -y
 dnf install python3-devel -y
 if [[ `lsb_release -si` == "Fedora" ]]; then
   dnf install python3-pyasyncore -y
-  dnf install tclx =y
+  dnf install tclx -y
 else
   echo -e "\e[01;32mBuilding & Installing tclx using Source Code from Github \e[0;39m"
   sleep 3

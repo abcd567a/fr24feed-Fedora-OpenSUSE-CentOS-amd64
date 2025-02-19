@@ -6,14 +6,14 @@ echo -e "\e[01;95mCreating Build Folder\e[0;32m" ${BUILD_FOLDER} "\e[01;95mto ho
 sleep 3
 mkdir -p ${BUILD_FOLDER}
 
-echo -e "\e[01;32mInstalling package lsb_release to identify the OS \e[0;39m"
-sleep 3
-dnf install lsb_release
-OS_ID=`lsb-release -si`
-
 echo -e "\e[01;32mUpdating repository... \e[0;39m"
 sleep 3
-if [[ ! ${OS_ID} == "Fedora" ]]; then dnf install epel-release; fi
+if [[ `cat /etc/os-release | grep CentOS` ]] || [[ `cat /etc/os-release | grep AlmaLinux` ]] ; then 
+  echo -e "\e[01;32mAdding EPEL repository by installing epel-release package \e[0;39m"
+  dnf install epel-release -y
+  echo -e "\e[01;32mInstalling package lsb_release to identify the OS \e[0;39m"
+  dnf install lsb-release -y
+fi
 dnf update
 dnf makecache
 
@@ -32,7 +32,18 @@ dnf install tk -y
 dnf install python3-wheel -y
 dnf install python3-devel -y
 dnf install python3-pyasyncore -y
-if [[ ${OS_ID} == "Fedora" ]]; then dnf install tclx; fi
+if [[ `lsb_release -si == "Fedora"` ]]; then 
+   dnf install tclx; 
+else
+  echo -e "\e[01;32mBuilding & Installing tclx using Source Code from Github \e[0;39m"
+  cd ${BUILD_FOLDER}
+  git clone https://github.com/flightaware/tclx.git
+  cd tclx
+  ./configure
+  make
+  make install
+  ln -sf /usr/lib/tclx8.6 /usr/share/tcl8.6
+fi
 
 echo -e "\e[01;32mBuilding & Installing tcllauncher using Source Code from Github \e[0;39m"
 sleep 3
